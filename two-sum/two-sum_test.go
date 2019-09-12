@@ -16,6 +16,7 @@ var cases = []struct {
 	want  []int
 }{
 	{input: args{nums: []int{2, 7, 11, 15}, target: 9}, want: []int{0, 1}},
+	{input: args{nums: []int{2, 5, 5, 11}, target: 10}, want: []int{1, 2}},
 	{input: args{nums: []int{2, 7, 11, 15}, target: 26}, want: []int{2, 3}},
 }
 
