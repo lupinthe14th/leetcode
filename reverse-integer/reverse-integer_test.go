@@ -13,6 +13,7 @@ var cases = []struct {
 	{input: -123, want: -321},
 	{input: 120, want: 21},
 	{input: 1, want: 1},
+	{input: 900000, want: 0},
 }
 
 func TestReverse(t *testing.T) {
