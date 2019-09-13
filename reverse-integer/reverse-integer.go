@@ -9,6 +9,9 @@ func reverse(x int) int {
 	for i := 0; i < 3; i++ {
 		reversedNumber = reversedNumber*10 + r%10
 		r /= 10
+		if r == 0 {
+			break
+		}
 	}
 	if x < 0 {
 		return reversedNumber * -1
