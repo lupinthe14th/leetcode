@@ -10,6 +10,8 @@ var cases = []struct {
 	want  bool
 }{
 	{input: 121, want: true},
+	{input: 1221, want: true},
+	{input: 12321, want: true},
 	{input: -121, want: false},
 	{input: 10, want: false},
 }
