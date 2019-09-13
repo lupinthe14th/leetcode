@@ -7,9 +7,6 @@ import (
 
 func reverse(x int) int {
 	r := x
-	if x < int(math.Pow(2, 31))*-1 || x > int(math.Pow(2, 31)-1) {
-		return 0
-	}
 	if x < 0 {
 		r = r * -1
 	}
@@ -18,6 +15,9 @@ func reverse(x int) int {
 	for i := 0; i < l; i++ {
 		reversedNumber = reversedNumber*10 + r%10
 		r /= 10
+	}
+	if reversedNumber < int(math.Pow(2, 31))*-1 || reversedNumber > int(math.Pow(2, 31)-1) {
+		return 0
 	}
 	if x < 0 {
 		return reversedNumber * -1
