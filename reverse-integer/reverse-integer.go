@@ -1,7 +1,12 @@
 package reverseinteger
 
+import "math"
+
 func reverse(x int) int {
 	r := x
+	if x < int(math.Pow(2, 31))*-1 || x > int(math.Pow(2, 31)-1) {
+		return 0
+	}
 	if x < 0 {
 		r = r * -1
 	}
