@@ -12,9 +12,10 @@ type ListNode struct {
 
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 
-	log.Printf("1: %d", (l1.Val + l2.Val))
-	log.Printf("Next: %d", l1.Next)
-	log.Printf("Next: Val %d", l1.Next.Val)
+	for n := l1.Next; n != nil; n = n.Next {
+		log.Printf("Val: %d", n.Val)
+		log.Printf("Next: %#v", n.Next)
+	}
 
 	return &ListNode{Val: 7, Next: &ListNode{Val: 0, Next: &ListNode{Val: 8, Next: nil}}}
 }
