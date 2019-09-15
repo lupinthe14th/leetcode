@@ -1,6 +1,8 @@
 package twosum
 
-import "log"
+import (
+	"errors"
+)
 
 func twoSumBruteForce(nums []int, target int) []int {
 	for i := 0; i < len(nums); i++ {
@@ -11,7 +13,7 @@ func twoSumBruteForce(nums []int, target int) []int {
 			}
 		}
 	}
-	return []int{}
+	panic(errors.New("No two sum solution"))
 }
 
 func twoSumHashTable(nums []int, target int) []int {
@@ -20,15 +22,16 @@ func twoSumHashTable(nums []int, target int) []int {
 	for i, num := range nums {
 		numsMap[i] = num
 	}
-	log.Printf("numsMap: %#v", numsMap)
 	// In the second iteration we check if each element's complement (target−nums[i]) exists in the table.
 	// Beware that the complement must not be nums[i] itself!
+	var complement int
 	for i, num := range nums {
-		complement := target - num
-		log.Printf("complement: %d", complement)
-		if numsMap[complement] != i {
-			return []int{nums[i]}
+		complement = target - num
+		for k, v := range numsMap {
+			if v == complement && k != i {
+				return []int{i, k}
+			}
 		}
 	}
-	return []int{}
+	panic(errors.New("No two sum solution"))
 }
