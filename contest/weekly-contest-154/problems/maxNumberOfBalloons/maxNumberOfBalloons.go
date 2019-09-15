@@ -1,12 +1,12 @@
 package maxnumberofballoons
 
 import (
-	"log"
 	"strings"
 )
 
 func maxNumberOfBalloons(text string) int {
 	var count int
+
 	chars := strings.Split(strings.ToLower(text), "")
 	charsMap := make(map[int]string)
 
@@ -14,16 +14,35 @@ func maxNumberOfBalloons(text string) int {
 		charsMap[i] = char
 	}
 
-	for i := 0; i < len(chars); i++ {
-		log.Printf("charsMap[%d]: %s", i, charsMap[i])
-		if strings.Contains("balloons", charsMap[i]) {
-			log.Print("contain")
-			delete(charsMap, i)
-			if (i+1)%7 == 0 {
-				count = count + 1
+	balloonMap := initBalloonMap()
+	textLength := len(chars)
+	i := 0
+	for i < textLength {
+		for j := 0; j < 7; j++ {
+			if balloonMap[j] == charsMap[i] {
+				delete(charsMap, i)
+				delete(balloonMap, j)
 			}
-
+			if len(balloonMap) == 0 {
+				count++
+				balloonMap = initBalloonMap()
+				i = 0
+				break
+			}
 		}
+		i++
 	}
 	return count
+}
+
+func initBalloonMap() map[int]string {
+	return map[int]string{
+		0: "b",
+		1: "a",
+		2: "l",
+		3: "l",
+		4: "o",
+		5: "o",
+		6: "n",
+	}
 }
