@@ -32,10 +32,10 @@ func TestTwoSumBruteForce(t *testing.T) {
 	}
 }
 
-func TestTwoSumHashTable(t *testing.T) {
+func TestTwoSumTwoPassHashTable(t *testing.T) {
 	for _, tt := range cases {
 		t.Run(fmt.Sprintln(tt.input), func(t *testing.T) {
-			got := twoSumHashTable(tt.input.nums, tt.input.target)
+			got := twoSumTwoPassHashTable(tt.input.nums, tt.input.target)
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("%d, want %d", got, tt.want)
 			}
