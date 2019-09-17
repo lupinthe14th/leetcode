@@ -27,8 +27,9 @@ func twoSumTwoPassHashTable(nums []int, target int) []int {
 	var complement int
 	for i, num := range nums {
 		complement = target - num
-		if (numsMap[complement] != 0) && (numsMap[complement] != i) {
-			return []int{i, numsMap[complement]}
+		j, ok := numsMap[complement]
+		if ok && i != j {
+			return []int{i, j}
 		}
 	}
 	panic(errors.New("No two sum solution"))
