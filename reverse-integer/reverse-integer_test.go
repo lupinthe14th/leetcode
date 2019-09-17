@@ -20,9 +20,9 @@ var cases = []struct {
 func TestReverse(t *testing.T) {
 	for _, tt := range cases {
 		t.Run(fmt.Sprintln(tt.input), func(t *testing.T) {
-			actual := reverse(tt.input)
-			if actual != tt.want {
-				t.Errorf("%v, want %v", actual, tt.want)
+			got := reverse(tt.input)
+			if got != tt.want {
+				t.Errorf("%v, want %v", got, tt.want)
 			}
 		})
 	}

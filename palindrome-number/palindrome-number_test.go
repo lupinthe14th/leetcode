@@ -19,9 +19,9 @@ var cases = []struct {
 func TestIsPalindrome(t *testing.T) {
 	for _, tt := range cases {
 		t.Run(fmt.Sprintln(tt.input), func(t *testing.T) {
-			actual := isPalindrome(tt.input)
-			if actual != tt.want {
-				t.Errorf("%t, want %t", actual, tt.want)
+			got := isPalindrome(tt.input)
+			if got != tt.want {
+				t.Errorf("%t, want %t", got, tt.want)
 			}
 		})
 	}

@@ -18,9 +18,9 @@ var cases = []struct {
 func TestHelloWorld(t *testing.T) {
 	for _, tt := range cases {
 		t.Run(fmt.Sprintln(tt.input), func(t *testing.T) {
-			actual := maxNumberOfBalloons(tt.input)
-			if actual != tt.want {
-				t.Errorf("%d, want: %d", actual, tt.want)
+			got := maxNumberOfBalloons(tt.input)
+			if got != tt.want {
+				t.Errorf("%d, want: %d", got, tt.want)
 			}
 		})
 	}
