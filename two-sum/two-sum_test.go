@@ -32,12 +32,32 @@ func TestTwoSumBruteForce(t *testing.T) {
 	}
 }
 
+func BenchmarkTwoSumBruteForce(b *testing.B) {
+	for i, tt := range cases {
+		b.Run(fmt.Sprint(i), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				twoSumBruteForce(tt.input.nums, tt.input.target)
+			}
+		})
+	}
+}
+
 func TestTwoSumTwoPassHashTable(t *testing.T) {
 	for _, tt := range cases {
 		t.Run(fmt.Sprintln(tt.input), func(t *testing.T) {
 			got := twoSumTwoPassHashTable(tt.input.nums, tt.input.target)
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("%d, want %d", got, tt.want)
+			}
+		})
+	}
+}
+
+func BenchmarkTwoSumTwoPassHashTable(b *testing.B) {
+	for i, tt := range cases {
+		b.Run(fmt.Sprint(i), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				twoSumTwoPassHashTable(tt.input.nums, tt.input.target)
 			}
 		})
 	}
