@@ -21,13 +21,21 @@ func romanToInt(s string) int {
 		"M":  1000,
 	}
 
+	chars := strings.Split(s, "")
 	var result int
-	for len(s) > 0 {
-		for k, v := range roman {
-			if strings.HasSuffix(s, k) {
-				result = result + v
-				s = strings.TrimSuffix(s, k)
-			}
+	cMap := make(map[int]string)
+	for i, c := range chars {
+		cMap[i] = c
+	}
+
+	for i := 0; i < len(s); i++ {
+		ss := cMap[i] + cMap[i+1] // ss is subtraction symbol
+		sn, ok := roman[ss]
+		if ok {
+			result = result + sn
+			i++
+		} else {
+			result = result + roman[cMap[i]]
 		}
 	}
 	return result
