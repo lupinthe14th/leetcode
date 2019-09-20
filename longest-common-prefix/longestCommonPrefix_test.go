@@ -12,6 +12,8 @@ var cases = []struct {
 }{
 	{id: 1, input: []string{"flower", "flow", "flight"}, want: "fl"},
 	{id: 2, input: []string{"dog", "racecar", "car"}, want: ""},
+	{id: 3, input: []string{}, want: ""},
+	{id: 4, input: []string{"flower"}, want: ""},
 }
 
 func TestLongestCommonPrefix(t *testing.T) {
