@@ -33,19 +33,17 @@ func longestCommonPrefix(strs []string) string {
 
 		sort.Slice(strsS, func(i, j int) bool { return strsS[i].length < strsS[j].length })
 		// その単語の文字をその単語以外全てと比較して全てにマッチするか判定する
-		// 比較対象はマップを用いる
+		// 比較対象はスライスを用いる
 		checkStr := strsS[0].word
-		c := 0
 		for i := 0; len(checkStr)-i > 0; i++ {
-			for k := range strsM {
-				if k != checkStr {
-					// 比較文字列はループ回数分後方から削る
-					if strings.HasPrefix(k, checkStr[:len(checkStr)-i]) {
-						c++
-						if c == len(strs) {
-							// 全てにマッチしたらその文字列を返す
-							return checkStr[:len(checkStr)-i]
-						}
+			c := 0
+			for _, str := range strs {
+				// 比較文字列はループ回数分後方から削る
+				if strings.HasPrefix(str, checkStr[:len(checkStr)-i]) {
+					c++
+					if c == len(strs) {
+						// 全てにマッチしたらその文字列を返す
+						return checkStr[:len(checkStr)-i]
 					}
 				}
 			}
