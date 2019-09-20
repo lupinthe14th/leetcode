@@ -6,6 +6,9 @@ import (
 )
 
 func longestCommonPrefix(strs []string) string {
+	if len(strs) == 1 {
+		return strs[0]
+	}
 	if len(strs) > 1 {
 		// Get the string with the fewest characters from the string slice
 		// solution: use sort
@@ -35,7 +38,6 @@ func longestCommonPrefix(strs []string) string {
 		c := 0
 		for i := 0; len(checkStr)-i > 0; i++ {
 			for k := range strsM {
-				// 自分自身と同じ文字は除外
 				if k != checkStr {
 					// 比較文字列はループ回数分後方から削る
 					if strings.HasPrefix(k, checkStr[:len(checkStr)-i]) {
