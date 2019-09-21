@@ -1,9 +1,5 @@
 package main
 
-import (
-	"log"
-)
-
 // ListNode is singly-linked list.
 type ListNode struct {
 	Val  int
@@ -12,10 +8,8 @@ type ListNode struct {
 
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 
-	for n := l1.Next; n != nil; n = n.Next {
-		log.Printf("Val: %d", n.Val)
-		log.Printf("Next: %#v", n.Next)
-	}
+	l := &ListNode{Val: l1.Val + l2.Val, Next: nil}
 
-	return &ListNode{Val: 7, Next: &ListNode{Val: 0, Next: &ListNode{Val: 8, Next: nil}}}
+	// return &ListNode{Val: 7, Next: &ListNode{Val: 0, Next: &ListNode{Val: 8, Next: nil}}}
+	return l
 }
