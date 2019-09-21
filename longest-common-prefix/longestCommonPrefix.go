@@ -32,7 +32,7 @@ func longestCommonPrefix(strs []string) string {
 		}
 
 		sort.Slice(strsS, func(i, j int) bool { return strsS[i].length < strsS[j].length })
-		// その単語の文字をその単語以外全てと比較して全てにマッチするか判定する
+		// その単語の文字を全ての単語にマッチするか判定する
 		// 比較対象はスライスを用いる
 		checkStr := strsS[0].word
 		for i := 0; len(checkStr)-i > 0; i++ {
@@ -51,4 +51,21 @@ func longestCommonPrefix(strs []string) string {
 	}
 	// If there is no common prefix, return an empty string ""
 	return ""
+}
+
+// Approach 1: Horizontal scanning
+func longestCommonPrefixHS(strs []string) string {
+	if len(strs) == 0 {
+		return ""
+	}
+	prefix := strs[0]
+	for i := 1; i < len(strs); i++ {
+		for !strings.HasPrefix(strs[i], prefix) {
+			prefix = strings.TrimSuffix(prefix, prefix[len(prefix)-1:len(prefix)])
+			if prefix == "" {
+				break
+			}
+		}
+	}
+	return prefix
 }

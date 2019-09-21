@@ -26,3 +26,30 @@ func TestLongestCommonPrefix(t *testing.T) {
 		})
 	}
 }
+
+func BenchmarkLongestCommonPrefix(b *testing.B) {
+	for _, tt := range cases {
+		for i := 0; i < b.N; i++ {
+			longestCommonPrefix(tt.input)
+		}
+	}
+}
+
+func TestLongestCommonPrefixHS(t *testing.T) {
+	for _, tt := range cases {
+		t.Run(fmt.Sprint(tt.id), func(t *testing.T) {
+			got := longestCommonPrefixHS(tt.input)
+			if got != tt.want {
+				t.Errorf("%s, want: %s", got, tt.want)
+			}
+		})
+	}
+}
+
+func BenchmarkLongestCommonPrefixHS(b *testing.B) {
+	for _, tt := range cases {
+		for i := 0; i < b.N; i++ {
+			longestCommonPrefixHS(tt.input)
+		}
+	}
+}
