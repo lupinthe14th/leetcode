@@ -32,16 +32,6 @@ func TestTwoSumBruteForce(t *testing.T) {
 	}
 }
 
-func BenchmarkTwoSumBruteForce(b *testing.B) {
-	for i, tt := range cases {
-		b.Run(fmt.Sprint(i), func(b *testing.B) {
-			for i := 0; i < b.N; i++ {
-				twoSumBruteForce(tt.input.nums, tt.input.target)
-			}
-		})
-	}
-}
-
 func TestTwoSumTwoPassHashTable(t *testing.T) {
 	for _, tt := range cases {
 		t.Run(fmt.Sprintln(tt.input), func(t *testing.T) {
@@ -52,10 +42,14 @@ func TestTwoSumTwoPassHashTable(t *testing.T) {
 		})
 	}
 }
-
-func BenchmarkTwoSumTwoPassHashTable(b *testing.B) {
+func BenchmarkTwoSum(b *testing.B) {
 	for i, tt := range cases {
-		b.Run(fmt.Sprint(i), func(b *testing.B) {
+		b.Run(fmt.Sprintf("BruteForce: %d", i), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				twoSumBruteForce(tt.input.nums, tt.input.target)
+			}
+		})
+		b.Run(fmt.Sprintf("PassHashTable: %d", i), func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
 				twoSumTwoPassHashTable(tt.input.nums, tt.input.target)
 			}
