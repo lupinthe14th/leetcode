@@ -5,6 +5,9 @@ import (
 )
 
 func isValid(s string) bool {
+	if s == "" {
+		return true
+	}
 	brackets := strings.Split(s, "")
 	if len(brackets)%2 != 0 {
 		return false

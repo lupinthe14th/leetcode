@@ -15,6 +15,7 @@ var cases = []struct {
 	{id: 3, input: "(]", want: false},
 	{id: 4, input: "([)]", want: false},
 	{id: 5, input: "{[]}", want: true},
+	{id: 6, input: "", want: true},
 }
 
 func TestIsValid(t *testing.T) {
