@@ -1,52 +1,22 @@
 package validparentheses
 
-import (
-	"strings"
-)
-
 func isValid(s string) bool {
-	if s == "" {
-		return true
-	}
-	brackets := strings.Split(s, "")
-	if len(brackets)%2 != 0 {
-		return false
+	parentheses := map[rune]rune{
+		')': '(',
+		'}': '{',
+		']': '[',
 	}
 
-	if brackets[0] == ")" || brackets[0] == "}" || brackets[0] == "]" {
-		return false
-	}
+	var stack []rune
 
-	for i := 0; i < len(brackets)/2; i++ {
-		switch {
-		case brackets[i] == "(":
-			if brackets[i+1] == "}" || brackets[i+1] == "]" {
-				return false
-			}
-			if brackets[i+1] != ")" {
-				if brackets[len(brackets)-i-1] != ")" {
-					return false
-				}
-			}
-		case brackets[i] == "{":
-			if brackets[i+1] == ")" || brackets[i+1] == "}" {
-				return false
-			}
-			if brackets[i+1] != "}" {
-				if brackets[len(brackets)-i-1] != "}" {
-					return false
-				}
-			}
-		case brackets[i] == "[":
-			if brackets[i+1] == ")" || brackets[i+1] == "}" {
-				return false
-			}
-			if brackets[i+1] != "]" {
-				if brackets[len(brackets)-i-1] != "]" {
-					return false
-				}
-			}
+	for _, char := range s {
+		if char == '(' || char == '{' || char == '[' {
+			stack = append(stack, char)
+		} else if len(stack) != 0 && parentheses[char] == stack[len(stack)-1] {
+			stack = stack[:len(stack)-1]
+		} else {
+			return false
 		}
 	}
-	return true
+	return len(stack) == 0
 }
