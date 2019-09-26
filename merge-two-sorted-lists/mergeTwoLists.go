@@ -1,9 +1,5 @@
 package mergetwosortedlists
 
-import (
-	"sort"
-)
-
 // ListNode is singly-linked list.
 type ListNode struct {
 	Val  int
@@ -11,24 +7,23 @@ type ListNode struct {
 }
 
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
-	var stack []int
-	var ln *ListNode
-	for l := l1; l != nil; l = l.Next {
-		stack = append(stack, l.Val)
-	}
-
-	for l := l2; l != nil; l = l.Next {
-		stack = append(stack, l.Val)
-	}
-
-	sort.Ints(stack)
-
-	for i := len(stack); i > 0; i-- {
-		if i == len(stack) {
-			ln = &ListNode{Val: stack[i-1], Next: nil}
+	var ln = &ListNode{}
+	var out = ln
+	for l1 != nil && l2 != nil {
+		if l1.Val < l2.Val {
+			ln.Next = l1
+			l1 = l1.Next
 		} else {
-			ln = &ListNode{Val: stack[i-1], Next: ln}
+			ln.Next = l2
+			l2 = l2.Next
 		}
+		ln = ln.Next
 	}
-	return ln
+
+	if l1 != nil {
+		ln.Next = l1
+	} else if l2 != nil {
+		ln.Next = l2
+	}
+	return out.Next
 }
