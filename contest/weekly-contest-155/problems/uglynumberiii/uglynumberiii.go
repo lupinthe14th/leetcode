@@ -1,37 +1,43 @@
 package nthuglynumber
 
 import (
-	"errors"
-	"math"
+	"sort"
 )
 
-//find smallest among three number
-func min(x, y, z int) int {
-	if x < y {
-		if x < z {
-			return x
-		}
-		return z
-	}
-	if y < z {
-		return y
-	}
-	return z
+// LCM(least common multipul)
+func lcm(x, y, z int) int {
+	return x * y * z
 }
 
 func nthUglyNumber(n int, a int, b int, c int) int {
-	var count int
-	for i := a; i < 2*int(math.Pow10(9)); i++ {
-		if i < c {
-			i = c
-			continue
+	m := make(map[int]int, 0)
+
+	l := lcm(a, b, c)
+	var divA, divB, divC int
+	for i := 1; ; i++ {
+		divA = a * i
+		divB = b * i
+		divC = c * i
+		if divA < l {
+			m[divA]++
 		}
-		if i%a == 0 || i%b == 0 || i%c == 0 {
-			count++
+
+		if divB < l {
+			m[divB]++
 		}
-		if count == n {
-			return i
+		if divC < l {
+			m[divC]++
+		}
+		if divA > l && divB > l && divC > l {
+			break
 		}
 	}
-	panic(errors.New("No solutions"))
+
+	numbers := make([]int, 0)
+
+	for number := range m {
+		numbers = append(numbers, number)
+	}
+	sort.Ints(numbers)
+	return numbers[n]
 }
