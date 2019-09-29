@@ -17,9 +17,7 @@ func equalSubstring(s string, t string, maxCost int) int {
 			abs := math.Abs(float64(diff))
 			if int(abs) > cost {
 				stack = append(stack, counter)
-				counter = 0
-				cost = maxCost
-				continue
+				break
 			}
 			counter++
 			cost = cost - int(abs)
