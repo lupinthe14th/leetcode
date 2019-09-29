@@ -16,6 +16,7 @@ var cases = []struct {
 	{id: 3, inputS: "abcd", inputT: "acde", inputM: 0, want: 1},
 	{id: 4, inputS: "krrgw", inputT: "zjxss", inputM: 19, want: 2},
 	{id: 5, inputS: "pxezla", inputT: "loewbi", inputM: 25, want: 4},
+	{id: 6, inputS: "krpgjbjjznpzdfy", inputT: "nxargkbydxmsgby", inputM: 14, want: 4},
 }
 
 func TestUniqueOccurrences(t *testing.T) {
