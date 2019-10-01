@@ -1,7 +1,5 @@
 package removeduplicatesfromsortedarray
 
-import "log"
-
 func removeDuplicates(nums []int) int {
 	if len(nums) < 2 {
 		return len(nums)
@@ -15,6 +13,5 @@ func removeDuplicates(nums []int) int {
 		nums[i+1] = v
 		i++
 	}
-	log.Println(nums)
 	return i + 1
 }
