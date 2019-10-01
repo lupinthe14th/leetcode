@@ -16,6 +16,9 @@ var cases = []struct {
 	{id: 3, input: 14, want: false},
 	{id: 4, input: int(math.Pow(-2, 31)), want: false},
 	{id: 5, input: int(math.Pow(2, 31) - 1), want: false},
+	{id: 6, input: 0, want: false},
+	{id: 7, input: 1, want: true},
+	{id: 8, input: -1, want: false},
 }
 
 func TestIsUgly(t *testing.T) {
