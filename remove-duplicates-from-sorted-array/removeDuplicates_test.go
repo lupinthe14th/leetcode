@@ -14,6 +14,7 @@ var cases = []struct {
 }{
 	{id: 1, input: []int{1, 1, 2}, wantList: []int{1, 2}, wantLength: 2},
 	{id: 2, input: []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}, wantList: []int{0, 1, 2, 3, 4}, wantLength: 5},
+	{id: 3, input: []int{0}, wantList: []int{0}, wantLength: 1},
 }
 
 func TestRemoveDupulicates(t *testing.T) {
