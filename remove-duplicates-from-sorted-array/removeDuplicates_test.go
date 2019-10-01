@@ -21,7 +21,7 @@ func TestRemoveDupulicates(t *testing.T) {
 		t.Run(fmt.Sprint(tt.id), func(t *testing.T) {
 			got := removeDuplicates(tt.input)
 			nums := tt.input
-			if !reflect.DeepEqual(nums, tt.wantList) {
+			if !reflect.DeepEqual(nums[:got], tt.wantList) {
 				t.Errorf("%v, wantList: %v", nums, tt.wantList)
 			}
 			if got != tt.wantLength {

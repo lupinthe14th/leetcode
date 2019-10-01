@@ -1,16 +1,20 @@
 package removeduplicatesfromsortedarray
 
+import "log"
+
 func removeDuplicates(nums []int) int {
-	seen := make(map[int]bool)
-	for i, n := range nums {
-		if i == 0 {
-			nums = nums[:0]
-		}
-		if !seen[n] {
-			seen[n] = true
-			nums = append(nums, n)
-		}
+	if len(nums) < 2 {
+		return len(nums)
 	}
-	nums = nums[:len(nums)]
-	return len(nums)
+
+	i := 0
+	for _, v := range nums[1:] {
+		if v == nums[i] {
+			continue
+		}
+		nums[i+1] = v
+		i++
+	}
+	log.Println(nums)
+	return i + 1
 }
