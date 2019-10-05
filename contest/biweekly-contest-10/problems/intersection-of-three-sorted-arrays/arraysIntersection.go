@@ -1,5 +1,7 @@
 package intersectionofthreesortedarrays
 
+import "sort"
+
 func arraysIntersection(arr1 []int, arr2 []int, arr3 []int) []int {
 	arrays := [][]int{arr1, arr2, arr3}
 	sum := make(map[int]int, 0)
@@ -16,5 +18,6 @@ func arraysIntersection(arr1 []int, arr2 []int, arr3 []int) []int {
 			stack = append(stack, k)
 		}
 	}
+	sort.Ints(stack)
 	return stack
 }
