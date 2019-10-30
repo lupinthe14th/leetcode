@@ -1,8 +1,7 @@
 package circularpermutationinbinaryrepresentation
 
 func circularPermutation(n int, start int) []int {
-	l := 1 << uint(n)
-	p := make([]int, 0, l)
+	p, l := make([]int, 0), int(1<<uint(n))
 
 	for i := 0; i < l; i++ {
 		p = append(p, start^i^i>>1)
