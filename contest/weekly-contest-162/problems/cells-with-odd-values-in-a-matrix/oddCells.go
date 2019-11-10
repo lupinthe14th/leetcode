@@ -6,13 +6,15 @@ func oddCells(n int, m int, indices [][]int) int {
 	for i := range matrix {
 		matrix[i] = make([]int, m)
 	}
-	for _, v := range indices {
+	for _, index := range indices {
 		for i := 0; i < m; i++ {
-			matrix[v[0]][i] = matrix[v[0]][i] + 1
+			row := index[0]
+			matrix[row][i]++
 		}
 
 		for i := 0; i < n; i++ {
-			matrix[i][v[1]] = matrix[i][v[1]] + 1
+			col := index[1]
+			matrix[i][col]++
 		}
 	}
 
