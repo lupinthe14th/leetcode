@@ -1,0 +1,26 @@
+package houserobber
+
+import (
+	"fmt"
+	"testing"
+)
+
+var cases = []struct {
+	id    int
+	input []int
+	want  int
+}{
+	{id: 1, input: []int{1, 2, 3, 1}, want: 4},
+	{id: 2, input: []int{2, 7, 9, 3, 1}, want: 12},
+}
+
+func TestRob(t *testing.T) {
+	for _, tt := range cases {
+		t.Run(fmt.Sprint(tt.id), func(t *testing.T) {
+			got := rob(tt.input)
+			if got != tt.want {
+				t.Errorf("%d, want: %d", got, tt.want)
+			}
+		})
+	}
+}
