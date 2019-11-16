@@ -1,28 +1,25 @@
 package houserobber
 
+import "log"
+
 func rob(nums []int) int {
 	n := len(nums)
 	if n == 0 {
 		return 0
 	}
-	dp := make([]int, 2)
+	dp := make([]int, n+1)
 
-	var maxMoney int
-	if n > 1 {
+	dp[0] = 0
+	dp[1] = nums[0]
 
-		for j := 0; j < 2; j++ {
-			i := j
-			dp[i] = nums[i]
-			for i < n-2 {
-				dp[j] = dp[j] + nums[i+2]
-				i = i + 2
-			}
-		}
-		maxMoney = max(dp[0], dp[1])
-	} else {
-		maxMoney = nums[0]
+	for i := 1; i < n; i++ {
+		dp[i+1] = max(dp[i], dp[i-1]+nums[i])
+		log.Printf("nums: %v", nums)
+		log.Printf("dp[i]: %d", dp[i])
+		log.Printf("dp[i-1]: %d", dp[i-1])
+		log.Printf("nums[i]: %d", nums[i])
 	}
-	return maxMoney
+	return dp[len(nums)]
 }
 
 func max(a, b int) int {
