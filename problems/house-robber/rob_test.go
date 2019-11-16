@@ -12,6 +12,7 @@ var cases = []struct {
 }{
 	{id: 1, input: []int{1, 2, 3, 1}, want: 4},
 	{id: 2, input: []int{2, 7, 9, 3, 1}, want: 12},
+	{id: 3, input: []int{}, want: 0},
 }
 
 func TestRob(t *testing.T) {
