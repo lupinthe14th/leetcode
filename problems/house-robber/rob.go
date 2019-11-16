@@ -7,15 +7,21 @@ func rob(nums []int) int {
 	}
 	dp := make([]int, 2)
 
-	for j := 0; j < 2; j++ {
-		i := j
-		dp[i] = nums[i]
-		for i < n-2 {
-			dp[j] = dp[j] + nums[i+2]
-			i = i + 2
+	var maxMoney int
+	if n > 1 {
+
+		for j := 0; j < 2; j++ {
+			i := j
+			dp[i] = nums[i]
+			for i < n-2 {
+				dp[j] = dp[j] + nums[i+2]
+				i = i + 2
+			}
 		}
+		maxMoney = max(dp[0], dp[1])
+	} else {
+		maxMoney = nums[0]
 	}
-	maxMoney := max(dp[0], dp[1])
 	return maxMoney
 }
 
