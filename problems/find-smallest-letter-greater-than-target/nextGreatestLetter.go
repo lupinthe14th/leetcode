@@ -1,9 +1,9 @@
 package findsmallestlettergreaterthantarget
 
 func nextGreatestLetter(letters []byte, target byte) byte {
-	for _, t := range letters {
-		if t > target {
-			return t
+	for _, letter := range letters {
+		if letter > target {
+			return letter
 		}
 	}
 	return letters[0]
