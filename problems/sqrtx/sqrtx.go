@@ -1,29 +1,24 @@
 package sqrtx
 
-import (
-	"math"
-)
-
 func mySqrt(x int) int {
-	if x == 0 {
-		return 0
-	}
-	if x < 4 {
+	if x == 1 {
 		return 1
 	}
-	lo, hi := 0, x+1
+	lo, hi := 0, x
 
 	var mi int
-	for lo < hi {
+	for {
 		mi = (hi + lo) / 2
-		r := math.Pow(float64(mi), 2)
+		if mi == lo {
+			return mi
+		}
+		r := mi * mi
 		if int(r) == x {
 			return mi
 		} else if int(r) < x {
-			lo = mi + 1
+			lo = mi
 		} else {
-			hi = mi - 1
+			hi = mi
 		}
 	}
-	return mi
 }
