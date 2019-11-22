@@ -18,6 +18,7 @@ var cases = []struct {
 	{id: 5, input: 3, want: 1},
 	{id: 6, input: 2, want: 1},
 	{id: 7, input: 1, want: 1},
+	{id: 8, input: 0, want: 0},
 }
 
 func TestMySqrt(t *testing.T) {
