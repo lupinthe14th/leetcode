@@ -19,6 +19,10 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 			if tmp >= 10 {
 				ln.Val = 1
 			}
+		} else if tmp >= 10 {
+			ln.Next = &ListNode{}
+			ln = ln.Next
+			ln.Val = 1
 		}
 		l1 = l1.Next
 		l2 = l2.Next
