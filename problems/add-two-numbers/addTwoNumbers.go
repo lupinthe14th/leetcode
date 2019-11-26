@@ -11,8 +11,8 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	out := ln
 
 	for l1 != nil && l2 != nil {
-		tmp := l1.Val + l2.Val
-		ln.Val += tmp % 10
+		tmp := ln.Val + l1.Val + l2.Val
+		ln.Val = tmp % 10
 		if l1.Next != nil || l2.Next != nil {
 			ln.Next = &ListNode{}
 			ln = ln.Next
@@ -29,9 +29,22 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	}
 
 	if l1 != nil {
-		ln.Val += l1.Val
+		tmp := (ln.Val + l1.Val)
+		ln.Val = tmp % 10
+		if tmp >= 10 {
+			ln.Next = &ListNode{}
+			ln = ln.Next
+			ln.Val = 1
+		}
 	} else if l2 != nil {
-		ln.Val += l2.Val
+		tmp := (ln.Val + l2.Val)
+		ln.Val = tmp % 10
+		if tmp >= 10 {
+			ln.Next = &ListNode{}
+			ln = ln.Next
+			ln.Val = 1
+		}
+
 	}
 	return out
 }
