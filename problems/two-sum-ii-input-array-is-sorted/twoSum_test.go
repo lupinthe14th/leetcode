@@ -17,6 +17,10 @@ var cases = []struct {
 	want  []int
 }{
 	{id: 1, input: input{numbers: []int{2, 7, 11, 15}, target: 9}, want: []int{1, 2}},
+	{id: 2, input: input{numbers: []int{2, 3, 4}, target: 6}, want: []int{1, 3}},
+	{id: 3, input: input{numbers: []int{0, 0, 3, 4}, target: 0}, want: []int{1, 2}},
+	{id: 4, input: input{numbers: []int{-3, 3, 4, 90}, target: 0}, want: []int{1, 2}},
+	{id: 5, input: input{numbers: []int{5, 25, 75}, target: 100}, want: []int{2, 3}},
 }
 
 func TestTwoSum(t *testing.T) {
