@@ -20,5 +20,8 @@ func deleteDuplicates(head *ListNode) *ListNode {
 		}
 		head = head.Next
 	}
+	if out.Next == nil {
+		return out
+	}
 	return out.Next
 }
