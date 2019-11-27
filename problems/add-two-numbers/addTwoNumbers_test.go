@@ -43,6 +43,12 @@ var cases = []struct {
 		l2:   &ListNode{Val: 9, Next: &ListNode{Val: 9, Next: nil}},
 		want: &ListNode{Val: 0, Next: &ListNode{Val: 0, Next: &ListNode{Val: 1, Next: nil}}},
 	},
+	{
+		id:   6,
+		l1:   &ListNode{Val: 9, Next: &ListNode{Val: 1, Next: &ListNode{Val: 6, Next: nil}}},
+		l2:   &ListNode{Val: 0, Next: nil},
+		want: &ListNode{Val: 9, Next: &ListNode{Val: 1, Next: &ListNode{Val: 6, Next: nil}}},
+	},
 }
 
 func TestAddTwoNumbers(t *testing.T) {
