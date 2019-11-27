@@ -1,38 +1,45 @@
 package main
 
-import (
-	"math"
-)
-
 // ListNode is singly-linked list.
 type ListNode struct {
 	Val  int
 	Next *ListNode
 }
 
-func reverseOrder(l *ListNode) int64 {
-	var ans int64
-	i := 0
-	for l != nil {
-		ans += int64(l.Val * int(math.Pow(10, float64(i))))
-		l = l.Next
-		i++
-	}
-	return ans
-}
-
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	ln := &ListNode{}
 	out := ln
-	sum := reverseOrder(l1) + reverseOrder(l2)
 
-	for sum != 0 {
-		ln.Val = int(sum % 10)
-		sum /= 10
-		if sum != 0 {
+	var carry int
+	for l1 != nil || l2 != nil {
+		var v1, v2 int
+		if l1 != nil {
+			v1 = l1.Val
+		}
+		if l2 != nil {
+			v2 = l2.Val
+		}
+		sum := carry + v1 + v2
+		carry = sum / 10
+		ln.Val = sum % 10
+		if l1 != nil {
+			l1 = l1.Next
+		}
+		if l2 != nil {
+			l2 = l2.Next
+		}
+		if l1 != nil || l2 != nil {
 			ln.Next = &ListNode{}
 			ln = ln.Next
 		}
 	}
+
+	if carry > 0 {
+		ln.Next = &ListNode{}
+		ln = ln.Next
+		ln.Val = carry
+
+	}
+
 	return out
 }
