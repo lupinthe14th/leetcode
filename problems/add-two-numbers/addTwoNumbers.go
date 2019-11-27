@@ -10,11 +10,11 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func reverseOrder(l *ListNode) int {
-	var ans int
+func reverseOrder(l *ListNode) int64 {
+	var ans int64
 	i := 0
 	for l != nil {
-		ans += l.Val * int(math.Pow(10, float64(i)))
+		ans += int64(l.Val * int(math.Pow(10, float64(i))))
 		l = l.Next
 		i++
 	}
@@ -27,7 +27,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	sum := reverseOrder(l1) + reverseOrder(l2)
 
 	for sum != 0 {
-		ln.Val = sum % 10
+		ln.Val = int(sum % 10)
 		sum /= 10
 		if sum != 0 {
 			ln.Next = &ListNode{}
