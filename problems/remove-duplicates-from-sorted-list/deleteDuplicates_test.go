@@ -14,12 +14,16 @@ var cases = []struct {
 	{id: 1, input: []int{1, 1, 2}, want: []int{1, 2}},
 	{id: 2, input: []int{1, 1, 2, 3, 3}, want: []int{1, 2, 3}},
 	{id: 3, input: []int{0, 0, 0, 0, 0}, want: []int{0}},
+	{id: 4, input: []int{}, want: []int{}},
 }
 
 func intSlice2ListNode(is []int) *ListNode {
 	l := &ListNode{}
 	out := l
 
+	if len(is) == 0 {
+		return nil
+	}
 	for i, v := range is {
 		l.Val = v
 
@@ -45,7 +49,9 @@ func TestDeleteDuplicates(t *testing.T) {
 	for _, tt := range cases {
 		t.Run(fmt.Sprint(tt.id), func(t *testing.T) {
 			got := listNode2IntSlice(deleteDuplicates(intSlice2ListNode(tt.input)))
-			if !reflect.DeepEqual(got, tt.want) {
+			if got != nil && tt.want != nil && !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("%v, want: %v", got, tt.want)
+			} else if got == nil && tt.want == nil {
 				t.Errorf("%v, want: %v", got, tt.want)
 			}
 		})

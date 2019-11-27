@@ -10,6 +10,9 @@ func deleteDuplicates(head *ListNode) *ListNode {
 	ln := &ListNode{}
 	out := ln
 
+	if head == nil {
+		return nil
+	}
 	var curr int
 	for head != nil {
 		if curr != head.Val {
