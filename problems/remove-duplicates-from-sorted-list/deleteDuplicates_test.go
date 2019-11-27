@@ -15,6 +15,7 @@ var cases = []struct {
 	{id: 2, input: []int{1, 1, 2, 3, 3}, want: []int{1, 2, 3}},
 	{id: 3, input: []int{0, 0, 0, 0, 0}, want: []int{0}},
 	{id: 4, input: []int{}, want: []int{}},
+	{id: 5, input: []int{0, 0, 0, 0, 3}, want: []int{0, 3}},
 }
 
 func intSlice2ListNode(is []int) *ListNode {
