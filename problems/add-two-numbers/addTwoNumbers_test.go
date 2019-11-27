@@ -27,7 +27,7 @@ func intArray2ListNode(ia []int) *ListNode {
 
 	for i, v := range ia {
 		ln.Val = v
-		if i < len(ia) {
+		if i < len(ia)-1 {
 			ln.Next = &ListNode{}
 			ln = ln.Next
 		}
