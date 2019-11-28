@@ -20,6 +20,10 @@ func intersection(nums1 []int, nums2 []int) []int {
 		lo, hi := 0, len(l2)
 		for lo <= hi {
 			mi := (lo + hi) / 2
+			if mi >= len(l2) {
+				break
+			}
+
 			if l1[i] == l2[mi] {
 				ans = append(ans, l1[i])
 				break
