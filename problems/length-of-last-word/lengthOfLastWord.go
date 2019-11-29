@@ -9,10 +9,6 @@ func lengthOfLastWord(s string) int {
 
 	lw := strings.Split(s, " ")
 
-	if len(lw) <= 1 {
-		return 0
-	}
-
 	l := strings.Split(lw[len(lw)-1], "")
 
 	return len(l)
