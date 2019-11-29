@@ -16,6 +16,7 @@ var cases = []struct {
 	{id: 4, input: "Hello Golang World", want: 5},
 	{id: 5, input: "No Silver Bullet in programming", want: 11},
 	{id: 6, input: "a", want: 1},
+	{id: 7, input: "a ", want: 1},
 }
 
 func TestLengthOfLastWord(t *testing.T) {

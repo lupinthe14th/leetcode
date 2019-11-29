@@ -7,9 +7,15 @@ func lengthOfLastWord(s string) int {
 		return 0
 	}
 
-	lw := strings.Split(s, " ")
+	ss := strings.Split(s, " ")
 
-	l := strings.Split(lw[len(lw)-1], "")
-
-	return len(l)
+	var l int
+	for i := len(ss) - 1; i >= 0; i-- {
+		if ss[i] != "" {
+			lw := strings.Split(ss[i], "")
+			l = len(lw)
+			break
+		}
+	}
+	return l
 }
