@@ -3,7 +3,6 @@ package hexspeak
 import (
 	"fmt"
 	"strconv"
-	"strings"
 )
 
 func toHexspeak(num string) string {
@@ -12,16 +11,29 @@ func toHexspeak(num string) string {
 		panic(err)
 	}
 	h := fmt.Sprintf("%X", n)
-	h = strings.ReplaceAll(h, "1", "I")
-	h = strings.ReplaceAll(h, "0", "O")
+	h = replaceAll(h, "1", "I")
+	h = replaceAll(h, "0", "O")
 
 	c := h
 	for _, s := range []string{"A", "B", "C", "D", "E", "F", "I", "O"} {
-		c = strings.ReplaceAll(c, s, "")
+		c = replaceAll(c, s, "")
 	}
 
 	if len(c) == 0 {
 		return h
 	}
 	return "ERROR"
+}
+
+func replaceAll(s, o, n string) string {
+	var ns string
+
+	for _, v := range s {
+		if string(v) == o {
+			ns += n
+		} else {
+			ns += string(v)
+		}
+	}
+	return ns
 }
