@@ -10,7 +10,9 @@ func tictactoe(moves [][]int) string {
 	for i := range matrix {
 		matrix[i] = make([]string, 3)
 	}
+	var c int
 	for i, move := range moves {
+		c++
 		x := move[0]
 		y := move[1]
 		if i%2 == 0 {
@@ -37,5 +39,8 @@ func tictactoe(moves [][]int) string {
 		}
 
 	}
-	return "Draw"
+	if c == 9 {
+		return "Draw"
+	}
+	return "Pending"
 }
