@@ -15,6 +15,7 @@ var cases = []struct {
 	{id: 3, input: 3, want: 3},
 	{id: 4, input: 4, want: 5},
 	{id: 5, input: 5, want: 8},
+	{id: 6, input: 44, want: 1134903170},
 }
 
 func TestClimbStairs(t *testing.T) {
