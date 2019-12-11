@@ -1,22 +1,28 @@
 package groupthepeoplegiventhegroupsizetheybelongto
 
-import "log"
-
 func groupThePeople(groupSizes []int) [][]int {
 
 	groups := make(map[int][]int, 0)
-	for i, gs := range groupSizes {
-		gn := gs
-		if _, group := groups[gn]; !group {
-			group := make([]int, gs-1)
-			group = append(group, i)
-			log.Print(group)
-		} else {
-			group = append(group, 1)
-		}
-		groups[gn] = group
-		log.Printf("groups: %v", groups)
-
+	for gi, gv := range groupSizes {
+		groups[gv] = append(groups[gv], gi)
 	}
-	return [][]int{}
+
+	result := make([][]int, 0)
+	for i := 1; i <= 500; i++ {
+		if groups[i] != nil {
+			if len(groups[i])-1 < i {
+				result = append(result, groups[i])
+			} else {
+				tmp := make([]int, 0)
+				for _, group := range groups[i] {
+					tmp = append(tmp, group)
+					if len(tmp) == i {
+						result = append(result, tmp)
+						tmp = []int{}
+					}
+				}
+			}
+		}
+	}
+	return result
 }
