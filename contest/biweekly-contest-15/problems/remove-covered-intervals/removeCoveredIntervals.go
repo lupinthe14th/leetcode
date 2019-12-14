@@ -5,8 +5,11 @@ func removeCoveredIntervals(intervals [][]int) int {
 	if c == 1 {
 		return c
 	}
-	for i := 0; i <= len(intervals); i++ {
-		for j := i + 1; j <= len(intervals)-1; j++ {
+	for i := 0; i < len(intervals); i++ {
+		for j := 0; j < len(intervals); j++ {
+			if i == j {
+				continue
+			}
 			if intervals[j][0] <= intervals[i][0] && intervals[i][1] <= intervals[j][1] {
 				c--
 			}

@@ -13,6 +13,7 @@ var cases = []struct {
 	{id: 1, input: [][]int{{1, 4}, {3, 6}, {2, 8}}, want: 2},
 	{id: 2, input: [][]int{{1, 4}}, want: 1},
 	{id: 3, input: [][]int{{1, 4}, {3, 6}}, want: 2},
+	{id: 4, input: [][]int{{1, 4}, {2, 3}}, want: 1},
 }
 
 func TestRemoveCoveredIntervals(t *testing.T) {
