@@ -11,9 +11,11 @@ func subarraySum(nums []int, k int) int {
 	}
 
 	var c int
+	const MaxUint = ^uint(0)
+	const MaxInt = int(MaxUint >> 1)
 	for i := 0; i < l; i++ {
 		for j := 0; j < l; j++ {
-			var sum int
+			sum := MaxInt
 			if i == j {
 				sum = dp[i]
 			} else if i < j {
