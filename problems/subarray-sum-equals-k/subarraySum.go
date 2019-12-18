@@ -1,21 +1,15 @@
 package subarraysumequalsk
 
 func subarraySum(nums []int, k int) int {
-	var c int
-	l := len(nums)
+	var c, sum int
 
-	var sum int
-	for i := 0; i < l; i++ {
-		sum = nums[i]
-		if sum == k {
-			c++
-		}
-		for j := i + 1; j < l; j++ {
-			sum += nums[j]
-			if sum == k {
-				c++
-			}
-		}
+	rec := make(map[int]int) // prefix sum recorder
+	rec[0]++                 // to take into account those subarrays that begin with index 0
+
+	for i := 0; i < len(nums); i++ {
+		sum += nums[i]
+		c += rec[sum-k]
+		rec[sum]++
 	}
 	return c
 }
