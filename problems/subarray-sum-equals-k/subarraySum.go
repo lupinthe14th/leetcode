@@ -4,8 +4,9 @@ func subarraySum(nums []int, k int) int {
 	var c int
 	l := len(nums)
 
+	var sum int
 	for i := 0; i < l; i++ {
-		sum := nums[i]
+		sum = nums[i]
 		if sum == k {
 			c++
 		}
