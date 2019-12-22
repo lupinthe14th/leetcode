@@ -5,7 +5,6 @@ import (
 )
 
 func isPossibleDivide(nums []int, k int) bool {
-	sort.Ints(nums)
 	l := len(nums)
 
 	if l%k != 0 {
@@ -15,6 +14,7 @@ func isPossibleDivide(nums []int, k int) bool {
 		return true
 	}
 
+	sort.Ints(nums)
 	m := make(map[int]int, l)
 	for _, v := range nums {
 		m[v]++
