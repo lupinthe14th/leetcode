@@ -8,20 +8,34 @@ func isPossibleDivide(nums []int, k int) bool {
 	sort.Ints(nums)
 	l := len(nums)
 
-	var sum int
+	if l%k != 0 {
+		return false
+	}
+	if k == 1 {
+		return true
+	}
+
+	m := make(map[int]int, l)
+	for _, v := range nums {
+		m[v]++
+	}
+
 	for i := 0; i < l; i++ {
-		sum = nums[i]
-		if sum == k {
-			return true
+		var lo int
+		if m[nums[i]] > 0 {
+			lo = nums[i]
+			m[lo]--
+		} else {
+			continue
 		}
-		for j := i + 1; j < l; j++ {
-			sum += nums[j]
-			if sum == k {
-				return true
-			} else if k != 0 && sum%k == 0 {
-				return true
+		for j := 0; j < k-1; j++ {
+			n := lo + 1
+			if m[n] <= 0 {
+				return false
 			}
+			m[n]--
+			lo = n
 		}
 	}
-	return false
+	return true
 }
