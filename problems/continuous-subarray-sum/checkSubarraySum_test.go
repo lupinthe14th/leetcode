@@ -18,6 +18,7 @@ var cases = []struct {
 	{id: 1, input: input{nums: []int{23, 2, 4, 6, 7}, k: 6}, want: true},
 	{id: 2, input: input{nums: []int{23, 2, 6, 4, 7}, k: 6}, want: true},
 	{id: 3, input: input{nums: []int{23, 2, 4, 6, 7}, k: 0}, want: false},
+	{id: 4, input: input{nums: []int{23, 2, 4, 6, 7}, k: 25}, want: true},
 }
 
 func TestCheckSubarraySum(t *testing.T) {

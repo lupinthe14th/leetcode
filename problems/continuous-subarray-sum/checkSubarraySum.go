@@ -8,9 +8,7 @@ func checkSubarraySum(nums []int, k int) bool {
 		sum = nums[i]
 		for j := i + 1; j < l; j++ {
 			sum += nums[j]
-			if sum == k {
-				return true
-			} else if k != 0 && sum%k == 0 {
+			if k != 0 && sum%k == 0 {
 				return true
 			}
 		}
