@@ -1,10 +1,7 @@
 select
-  Name as Customers
+  a.name as Customers
 from
-  Customers
+  Customers as a
+  left join Orders as b on a.id = b.customerid
 where
-  Id not in (select
-    CustomerId
-  from
-    Orders
-  )
+  b.id is null
