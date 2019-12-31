@@ -23,7 +23,10 @@ func canJump(nums []int) bool {
 
 	// iを最終地点の一つ前から開始点0までループ
 	for i := l - 2; i >= 0; i-- {
+		// furthest Jump position
 		fj := min(i+nums[i], l-1)
+		// current positionからfurthest jump positionまでチェック
+		// 既にGoodフラグが立っていればbreak
 		for j := i + 1; j <= fj; j++ {
 			if memo[j] == good {
 				memo[i] = good
@@ -31,6 +34,7 @@ func canJump(nums []int) bool {
 			}
 		}
 	}
+	// 最初の地点でGoodフラグとなっているか確認
 	return memo[0] == good
 }
 
