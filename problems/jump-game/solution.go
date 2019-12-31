@@ -20,7 +20,8 @@ func canJumpFromPosition(p int, nums []int) bool {
 	fj := min(p+nums[p], l-1) //  furthest Jump
 
 	// 次の地点を逐次再帰的に調べる。
-	for np := p + 1; np <= fj; np++ {
+	// npを最大値から最小値までチェック
+	for np := fj; np > p; np-- {
 		if canJumpFromPosition(np, nums) {
 			return true
 		}
