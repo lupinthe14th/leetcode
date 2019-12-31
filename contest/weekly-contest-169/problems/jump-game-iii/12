@@ -1,0 +1,32 @@
+package main
+
+// Algorithms: recursion backtrack
+func canReach(arr []int, start int) bool {
+	if arr[start] == 0 {
+		return true
+	}
+	l := len(arr)
+	np := start + arr[start]
+
+	if np >= l-1 {
+		if arr[np] == 0 {
+			return true
+		}
+		if canReach(arr, np) {
+			return true
+		}
+	}
+
+	np = start - arr[start]
+	if np >= 0 {
+		if arr[np] == 0 {
+			return true
+		}
+		if canReach(arr, np) {
+			return true
+		}
+	}
+	return false
+}
+
+func main() {}
