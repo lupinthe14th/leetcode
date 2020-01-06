@@ -11,10 +11,12 @@ type args struct {
 	target int
 }
 
-var cases = []struct {
+type Case struct {
 	input args
 	want  []int
-}{
+}
+
+var cases = []Case{
 	{input: args{nums: []int{2, 7, 11, 15}, target: 9}, want: []int{0, 1}},
 	{input: args{nums: []int{2, 5, 5, 11}, target: 10}, want: []int{1, 2}},
 	{input: args{nums: []int{2, 7, 11, 15}, target: 26}, want: []int{2, 3}},
@@ -22,8 +24,8 @@ var cases = []struct {
 }
 
 func TestTwoSumBruteForce(t *testing.T) {
-	for _, tt := range cases {
-		t.Run(fmt.Sprintln(tt.input), func(t *testing.T) {
+	for i, tt := range cases {
+		t.Run(fmt.Sprint(i), func(t *testing.T) {
 			got := twoSumBruteForce(tt.input.nums, tt.input.target)
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("%v, want %v", got, tt.want)
@@ -33,23 +35,29 @@ func TestTwoSumBruteForce(t *testing.T) {
 }
 
 func TestTwoSumTwoPassHashTable(t *testing.T) {
-	for _, tt := range cases {
-		t.Run(fmt.Sprintln(tt.input), func(t *testing.T) {
+	for i, tt := range cases {
+		t.Run(fmt.Sprint(i), func(t *testing.T) {
 			got := twoSumTwoPassHashTable(tt.input.nums, tt.input.target)
 			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("%d, want %d", got, tt.want)
+				t.Errorf("%v, want %v", got, tt.want)
 			}
 		})
 	}
 }
-func BenchmarkTwoSum(b *testing.B) {
+
+func BenchmarkTwoSumBruteForce(b *testing.B) {
 	for i, tt := range cases {
-		b.Run(fmt.Sprintf("BruteForce: %d", i), func(b *testing.B) {
+		b.Run(fmt.Sprint(i), func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
 				twoSumBruteForce(tt.input.nums, tt.input.target)
 			}
 		})
-		b.Run(fmt.Sprintf("PassHashTable: %d", i), func(b *testing.B) {
+	}
+}
+
+func BenchmarkTwoSumTwoPassHashTable(b *testing.B) {
+	for i, tt := range cases {
+		b.Run(fmt.Sprint(i), func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
 				twoSumTwoPassHashTable(tt.input.nums, tt.input.target)
 			}
