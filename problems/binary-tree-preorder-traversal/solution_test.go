@@ -13,6 +13,8 @@ type Case struct {
 
 var cases = []Case{
 	{input: []interface{}{1, nil, 2, 3}, want: []int{1, 2, 3}},
+	{input: []interface{}{}, want: []int{}},
+	{input: []interface{}{3, 1, 2}, want: []int{3, 1, 2}},
 }
 
 func TestPreorderTravarsal(t *testing.T) {

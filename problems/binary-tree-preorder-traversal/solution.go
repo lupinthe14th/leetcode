@@ -8,16 +8,23 @@ type TreeNode struct {
 }
 
 func preorderTraversal(root *TreeNode) []int {
-	acc := make([]int, 0)
-	preorderRecursive(&acc, root)
-	return acc
-}
-
-func preorderRecursive(acc *[]int, root *TreeNode) {
+	ans := make([]int, 0)
 	if root == nil {
-		return
+		return ans
 	}
-	*acc = append(*acc, root.Val)
-	preorderRecursive(acc, root.Left)
-	preorderRecursive(acc, root.Right)
+	stack := make([]*TreeNode, 0)
+	stack = append(stack, root)
+
+	for len(stack) != 0 {
+		visit := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		ans = append(ans, visit.Val)
+		if visit.Right != nil {
+			stack = append(stack, visit.Right)
+		}
+		if visit.Left != nil {
+			stack = append(stack, visit.Left)
+		}
+	}
+	return ans
 }
