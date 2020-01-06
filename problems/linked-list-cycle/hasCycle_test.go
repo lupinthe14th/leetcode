@@ -10,14 +10,16 @@ type input struct {
 	pos int
 }
 
-var cases = []struct {
-	id    int
+type Case struct {
 	input input
 	want  bool
-}{
-	{id: 1, input: input{is: []int{3, 2, 0, -4}, pos: 1}, want: true},
-	{id: 2, input: input{is: []int{1, 2}, pos: 0}, want: true},
-	{id: 3, input: input{is: []int{1}, pos: -1}, want: false},
+}
+
+var cases = []Case{
+	{input: input{is: []int{3, 2, 0, -4}, pos: 1}, want: true},
+	{input: input{is: []int{1, 2}, pos: 0}, want: true},
+	{input: input{is: []int{1}, pos: -1}, want: false},
+	{input: input{is: []int{}, pos: 0}, want: false},
 }
 
 func intSlice2CycleListNode(is []int, pos int) *ListNode {
@@ -39,8 +41,8 @@ func intSlice2CycleListNode(is []int, pos int) *ListNode {
 }
 
 func TestHasCycle(t *testing.T) {
-	for _, tt := range cases {
-		t.Run(fmt.Sprint(tt.id), func(t *testing.T) {
+	for i, tt := range cases {
+		t.Run(fmt.Sprint(i), func(t *testing.T) {
 			got := hasCycle(intSlice2CycleListNode(tt.input.is, tt.input.pos))
 			if got != tt.want {
 				t.Errorf("%t, want: %t", got, tt.want)
