@@ -16,7 +16,7 @@ var cases = []Case{
 	{input: 9999, want: 9999},
 }
 
-func TestMinInsertions(t *testing.T) {
+func TestMaximum69Number(t *testing.T) {
 	for i, tt := range cases {
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
 			got := maximum69Number(tt.input)
