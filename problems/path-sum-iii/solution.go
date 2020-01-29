@@ -1,4 +1,4 @@
-package main
+package pathsumiii
 
 type TreeNode struct {
 	Val   int
@@ -30,5 +30,3 @@ func getSumPaths(root *TreeNode, sum, pre int) int {
 	}
 	return c + getSumPaths(root.Left, sum, cur) + getSumPaths(root.Right, sum, cur)
 }
-
-func main() {}
