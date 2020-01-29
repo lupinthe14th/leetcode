@@ -1,4 +1,4 @@
-package main
+package pathsumiii
 
 import (
 	"fmt"
