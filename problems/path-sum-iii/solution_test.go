@@ -19,7 +19,6 @@ type input struct {
 var cases = []Case{
 	{input: input{root: []interface{}{10, 5, -3, 3, 2, nil, 11, 3, -2, nil, 1}, sum: 8}, want: 3},
 	{input: input{root: []interface{}{5, 4, 8, 11, nil, 13, 4, 7, 2, nil, nil, 5, 1}, sum: 22}, want: 3},
-	{input: input{root: []interface{}{1, nil, 2, nil, 3, nil, 4, nil, 5}, sum: 3}, want: 2},
 }
 
 func TestPathSum(t *testing.T) {
