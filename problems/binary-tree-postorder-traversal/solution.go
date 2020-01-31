@@ -7,16 +7,16 @@ type TreeNode struct {
 }
 
 func postorderTraversal(root *TreeNode) []int {
-	sl := make([]int, 0)
-	postorderTraversalRecursive(root, &sl)
-	return sl
+	acc := make([]int, 0)
+	postorderTraversalRecursive(root, &acc)
+	return acc
 }
 
-func postorderTraversalRecursive(root *TreeNode, sl *[]int) {
+func postorderTraversalRecursive(root *TreeNode, acc *[]int) {
 	if root == nil {
 		return
 	}
-	postorderTraversalRecursive(root.Left, sl)
-	postorderTraversalRecursive(root.Right, sl)
-	*sl = append(*sl, root.Val)
+	postorderTraversalRecursive(root.Left, acc)
+	postorderTraversalRecursive(root.Right, acc)
+	*acc = append(*acc, root.Val)
 }
