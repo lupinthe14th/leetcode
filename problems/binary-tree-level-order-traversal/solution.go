@@ -13,7 +13,7 @@ type Queue struct {
 }
 
 func levelOrder(root *TreeNode) [][]int {
-	var ans [][]int
+	ans := make([][]int, 0)
 	if root == nil {
 		return ans
 	}
