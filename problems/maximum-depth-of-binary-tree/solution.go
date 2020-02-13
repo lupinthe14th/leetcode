@@ -1,3 +1,4 @@
+// Refarence: https://leetcode.com/problems/maximum-depth-of-binary-tree/discuss/34216/Simple-solution-using-Java
 package maximumdepthofbinarytree
 
 type TreeNode struct {
@@ -6,23 +7,11 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-var ans int
-
 func maxDepth(root *TreeNode) int {
-	ans = 0
-	maximumDepth(root, 1)
-	return ans
-}
-
-func maximumDepth(root *TreeNode, depth int) {
 	if root == nil {
-		return
+		return 0
 	}
-	if root.Left == nil && root.Right == nil {
-		ans = max(ans, depth)
-	}
-	maximumDepth(root.Left, depth+1)
-	maximumDepth(root.Right, depth+1)
+	return 1 + max(maxDepth(root.Left), maxDepth(root.Right))
 }
 
 func max(x, y int) int {
