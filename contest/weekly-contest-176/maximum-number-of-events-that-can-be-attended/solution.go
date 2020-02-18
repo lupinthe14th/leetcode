@@ -46,8 +46,8 @@ func (h *IntHeap) Pop() interface{} {
 }
 
 func maxEvents(events [][]int) int {
-	pq := make(IntHeap, 0, 1e5)
-	heap.Init(&pq)
+	pq := &IntHeap{}
+	heap.Init(pq)
 	sort.Slice(events, func(i, j int) bool {
 		if events[i][0] == events[j][0] {
 			return events[i][1] < events[j][1]
@@ -61,15 +61,15 @@ func maxEvents(events [][]int) int {
 			d = events[i][0]
 		}
 		for i < n && events[i][0] <= d {
-			heap.Push(&pq, events[i][1])
+			heap.Push(pq, events[i][1])
 			i++
 		}
 
-		heap.Pop(&pq)
+		heap.Pop(pq)
 		c++
 		d++
-		for pq.Len() > 0 && pq[0] < d {
-			heap.Pop(&pq)
+		for pq.Len() > 0 && (*pq)[0] < d {
+			heap.Pop(pq)
 		}
 	}
 	return c
