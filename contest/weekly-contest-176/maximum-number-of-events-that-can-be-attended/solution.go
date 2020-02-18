@@ -22,6 +22,7 @@ import (
 // 5. If we can attend a meeting, we increment the result res.
 //    イベントに出席できる場合はカウントを増やします。
 // SeeAlso: https://golang.org/pkg/container/heap/#example__priorityQueue
+// Same idea, though people worry about the time complexity of iteration all days.
 
 // An IntHeap is a min-heap of ints.
 type IntHeap []int
@@ -45,7 +46,7 @@ func (h *IntHeap) Pop() interface{} {
 }
 
 func maxEvents(events [][]int) int {
-	pq := make(IntHeap, 10)
+	pq := make(IntHeap, 0, 1e5)
 	heap.Init(&pq)
 	sort.Slice(events, func(i, j int) bool {
 		if events[i][0] == events[j][0] {
@@ -53,19 +54,22 @@ func maxEvents(events [][]int) int {
 		}
 		return events[i][0] < events[j][0]
 	})
-	var i, c int
+	var i, c, d int
 	n := len(events)
-	for d := 1; d <= 1e5; d++ {
-		for pq.Len() > 0 && pq[0] < d {
-			heap.Pop(&pq)
+	for pq.Len() > 0 || i < n {
+		if pq.Len() == 0 {
+			d = events[i][0]
 		}
-		for i < n && events[i][0] == d {
+		for i < n && events[i][0] <= d {
 			heap.Push(&pq, events[i][1])
 			i++
 		}
-		if pq.Len() > 0 {
+
+		heap.Pop(&pq)
+		c++
+		d++
+		for pq.Len() > 0 && pq[0] < d {
 			heap.Pop(&pq)
-			c++
 		}
 	}
 	return c
