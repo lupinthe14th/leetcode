@@ -1,13 +1,9 @@
 package singlenumber
 
-import "sort"
-
 func singleNumber(nums []int) int {
-	sort.Ints(nums)
-	for i := 0; i < len(nums)-1; i += 2 {
-		if nums[i] != nums[i+1] {
-			return nums[i]
-		}
+	var ans int = 0
+	for _, v := range nums {
+		ans ^= v
 	}
-	return nums[len(nums)-1]
+	return ans
 }
