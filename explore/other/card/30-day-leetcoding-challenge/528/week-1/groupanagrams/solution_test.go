@@ -15,8 +15,9 @@ func TestGroupAnagrams(t *testing.T) {
 	}{
 		{in: []string{"eat", "tea", "tan", "ate", "nat", "bat"}, want: [][]string{{"ate", "eat", "tea"}, {"nat", "tan"}, {"bat"}}},
 	}
+	// This Transformer sorts a [][]string.
 	trans := cmp.Transformer("Sort", func(in [][]string) [][]string {
-		out := in
+		out := append([][]string(nil), in...) // Copy input to avoid mutating it
 		sort.Slice(out, func(i, j int) bool {
 			for _, v := range out {
 				sort.Strings(v)
