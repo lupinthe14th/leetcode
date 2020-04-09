@@ -5,16 +5,19 @@ type ListNode struct {
 	Next *ListNode
 }
 
+// refactor
+// approach 2: Fast and Slow Pointer
+// Intuition and Algorithm
+//
+// When traversing the list with a pointer slow, make another pointer fast that
+// traverses twice as fast. When fast reaches the end of the list, slow must be
+// in the middle.
 func middleNode(head *ListNode) *ListNode {
-	c := 0
-	out := head
-	for head != nil {
-		head = head.Next
-		c++
+	slow := head
+	fast := head
+	for fast != nil && fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
 	}
-	m := c / 2
-	for i := 0; i < m; i++ {
-		out = out.Next
-	}
-	return out
+	return slow
 }
