@@ -9,20 +9,13 @@ func lastStoneWeight(stones []int) int {
 		sort.Ints(stones)
 		x := stones[len(stones)-2]
 		y := stones[len(stones)-1]
-		if x == y {
-			//2 delete
-			stones = stones[:len(stones)-2]
-		}
+		stones = stones[:len(stones)-2]
 		if x != y {
-			//replace
-			stones[len(stones)-2] = y - x
-			//1 delete
-			stones = stones[:len(stones)-1]
+			stones = append(stones, y-x)
 		}
-		if len(stones) == 0 {
-			return 0
-
-		}
+	}
+	if len(stones) == 0 {
+		return 0
 	}
 	return stones[0]
 }
