@@ -1,42 +1,23 @@
 package productofarrayexceptself
 
 func productExceptSelf(nums []int) []int {
-	c, allProd := prod(nums)
-	switch {
-	case c == 0:
-		for i, n := range nums {
-			nums[i] = allProd / n
-		}
-	case c == 1:
-		for i, n := range nums {
-			if n == 0 {
-				nums[i] = allProd
-			} else {
-				nums[i] = 0
-			}
-		}
-	case c == 2:
-		for i := range nums {
-			nums[i] = 0
-		}
-	}
-	return nums
-}
+	l := make([]int, len(nums))
+	r := make([]int, len(nums))
+	ans := make([]int, len(nums))
 
-// c: 零の数
-// p: 一つの零を除いた積
-func prod(nums []int) (c, p int) {
-	c, p = 0, 1
-	for _, n := range nums {
-		if n == 0 {
-			c++
-			continue
-		}
-		p *= n
+	l[0] = 1
+
+	for i := 1; i < len(nums); i++ {
+		l[i] = l[i-1] * nums[i-1]
 	}
 
-	if c >= 2 {
-		return 2, 0
+	r[len(nums)-1] = 1
+	for i := len(nums) - 2; i >= 0; i-- {
+		r[i] = nums[i+1] * r[i+1]
 	}
-	return c, p
+
+	for i := range ans {
+		ans[i] = l[i] * r[i]
+	}
+	return ans
 }
