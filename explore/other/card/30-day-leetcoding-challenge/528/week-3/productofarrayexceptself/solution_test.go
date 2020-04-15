@@ -11,7 +11,9 @@ func TestProductExceptSelf(t *testing.T) {
 		in, want []int
 	}{
 		{in: []int{1, 2, 3, 4}, want: []int{24, 12, 8, 6}},
+		{in: []int{0, 1, 2, 3, 4}, want: []int{24, 0, 0, 0, 0}},
 		{in: []int{0, 0}, want: []int{0, 0}},
+		{in: []int{1, 0}, want: []int{0, 1}},
 	}
 	for i, tt := range tests {
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
