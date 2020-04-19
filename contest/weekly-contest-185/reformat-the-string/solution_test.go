@@ -13,7 +13,9 @@ func TestReformat(t *testing.T) {
 		{in: "leetcode", want: ""},
 		{in: "1229857369", want: ""},
 		{in: "covid2019", want: "c2o0v1i9d"},
+		{in: "covid200", want: ""},
 		{in: "ab123", want: "1a2b3"},
+		{in: "a123", want: ""},
 		{in: "j", want: "j"},
 	}
 	for i, tt := range tests {
