@@ -1,7 +1,7 @@
 package ransomnote
 
 func canConstruct(ransomNote string, magazine string) bool {
-	memo := make(map[rune]int)
+	memo := make(map[rune]int, 26)
 
 	for _, r := range magazine {
 		memo[r]++
