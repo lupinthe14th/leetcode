@@ -1,20 +1,21 @@
 package ransomnote
 
-import (
-	"strings"
-)
-
 func canConstruct(ransomNote string, magazine string) bool {
-	arr := strings.Split(magazine, "")
-	c := 0
-	for i := range ransomNote {
-		for j := 0; j < len(arr); j++ {
-			if string(ransomNote[i]) == arr[j] {
-				c++
-				arr = append(arr[:j], arr[j+1:]...)
-				break
-			}
-		}
+	memo := make(map[rune]int)
+
+	for _, r := range magazine {
+		memo[r]++
 	}
-	return len(ransomNote) == c
+
+	for _, r := range ransomNote {
+		c, ok := memo[r]
+		if !ok {
+			return false
+		}
+		if c <= 0 {
+			return false
+		}
+		memo[r]--
+	}
+	return true
 }
