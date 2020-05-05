@@ -1,15 +1,13 @@
 package firstuniquecharacterinastring
 
 func firstUniqChar(s string) int {
-	memo := make([]int, 256)
-	sb := []byte(s)
-	l := len(sb)
-	for i := 0; i < l; i++ {
-		memo[sb[i]]++
+	memo := make(map[rune]int, 26)
+	for _, r := range s {
+		memo[r]++
 	}
 
-	for i := 0; i < l; i++ {
-		if memo[sb[i]] == 1 {
+	for i, r := range s {
+		if memo[r] == 1 {
 			return i
 		}
 	}
