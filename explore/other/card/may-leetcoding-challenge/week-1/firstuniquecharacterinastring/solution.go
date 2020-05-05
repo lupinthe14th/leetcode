@@ -1,22 +1,14 @@
 package firstuniquecharacterinastring
 
 func firstUniqChar(s string) int {
-	memo := make(map[rune]int, 26)
+	memo := make([]int, 256)
 	for _, r := range s {
 		memo[r]++
 	}
 
-	for k, v := range memo {
-		if v != 1 {
-			delete(memo, k)
-		}
-	}
-
-	if len(memo) != 0 {
-		for i, r := range s {
-			if _, ok := memo[r]; ok {
-				return i
-			}
+	for i, r := range s {
+		if memo[r] == 1 {
+			return i
 		}
 	}
 	return -1
