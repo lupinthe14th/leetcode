@@ -2,9 +2,6 @@ package validperfectsquare
 
 func isPerfectSquare(num int) bool {
 
-	if num == 0 || num == 1 {
-		return true
-	}
 	lo, hi := 0, num
 
 	for lo < hi {
@@ -19,5 +16,5 @@ func isPerfectSquare(num int) bool {
 		}
 
 	}
-	return false
+	return lo*lo == num
 }
