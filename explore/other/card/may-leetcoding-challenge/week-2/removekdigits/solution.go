@@ -1,6 +1,6 @@
 package removekdigits
 
-// Using stack
+// Straightforward Using stack
 // SeeAlso: https://leetcode.com/problems/remove-k-digits/discuss/88708/Straightforward-Java-Solution-Using-Stack
 func removeKdigits(num string, k int) string {
 	l := len(num)
@@ -13,6 +13,7 @@ func removeKdigits(num string, k int) string {
 
 	i := 0
 	for i < l {
+		// whenever meet a digit which is less than the previous digit, discard the previous one
 		for k > 0 && len(stack) != 0 && stack[0] > num[i] {
 			stack = stack[1:]
 			k--
