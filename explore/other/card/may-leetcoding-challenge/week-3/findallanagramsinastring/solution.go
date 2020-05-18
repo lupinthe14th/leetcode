@@ -4,6 +4,7 @@ import (
 	"reflect"
 )
 
+// SeeAlso: https://leetcode.com/problems/find-all-anagrams-in-a-string/discuss/491040/go-O(N)-sliding-window
 func findAnagrams(s string, p string) []int {
 	if len(s) < len(p) {
 		return nil
