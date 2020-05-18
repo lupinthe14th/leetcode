@@ -1,17 +1,12 @@
 package findallanagramsinastring
 
-import (
-	"reflect"
-)
-
 // SeeAlso: https://leetcode.com/problems/find-all-anagrams-in-a-string/discuss/491040/go-O(N)-sliding-window
 func findAnagrams(s string, p string) []int {
 	if len(s) < len(p) {
 		return nil
 	}
 
-	pat := make([]int, 26)
-	mem := make([]int, 26)
+	var pat, mem [26]int
 
 	for i := range p {
 		pat[p[i]-'a']++
@@ -19,7 +14,7 @@ func findAnagrams(s string, p string) []int {
 	}
 	out := make([]int, 0, len(s))
 	for i := 0; i < len(s)-len(p)+1; i++ {
-		if reflect.DeepEqual(pat, mem) {
+		if pat == mem {
 			out = append(out, i)
 		}
 
