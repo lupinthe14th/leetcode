@@ -4,7 +4,7 @@ func frequencySort(s string) string {
 	maxl := 0
 	out := make([]byte, 0, len(s))
 
-	var memo [256]int
+	memo := make([]int, 256)
 	for _, b := range s {
 		memo[b]++
 		maxl = max(maxl, memo[b])
