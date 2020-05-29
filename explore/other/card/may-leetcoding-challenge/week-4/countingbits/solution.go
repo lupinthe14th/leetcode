@@ -1,24 +1,11 @@
 package countingbits
 
+// SeeAlso: https://leetcode.com/explore/challenge/card/may-leetcoding-challenge/537/week-4-may-22nd-may-28th/3343/discuss/79539/Three-Line-Java-Solution
+// An easy recurrence for this problem is f[i] = f[i/2] + i%2
 func countBits(num int) []int {
-	out := []int{0, 1}
-	if num == 0 {
-		return []int{0}
-	}
-	if num == 1 {
-		return out
-	}
-	b, c := 1, 0
-	for i := 2; i <= num; i++ {
-		if i == 2<<uint(b) {
-			c = 0
-			out = append(out, out[c]+1)
-			b++
-			c++
-		} else {
-			out = append(out, out[c]+1)
-			c++
-		}
+	out := make([]int, num+1)
+	for i := 1; i <= num; i++ {
+		out[i] = out[i>>1] + i&1
 	}
 	return out
 }
