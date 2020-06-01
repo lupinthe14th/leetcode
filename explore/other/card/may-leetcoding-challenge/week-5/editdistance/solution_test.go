@@ -15,6 +15,7 @@ func TestMinDistance(t *testing.T) {
 	}{
 		{in: in{w1: "horse", w2: "ros"}, want: 3},
 		{in: in{w1: "intention", w2: "execution"}, want: 5},
+		{in: in{w1: "", w2: "a"}, want: 1},
 	}
 	for i, tt := range tests {
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
