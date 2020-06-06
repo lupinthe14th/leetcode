@@ -1,6 +1,7 @@
 package randompickwithweight
 
 import (
+	"log"
 	"math/rand"
 )
 
@@ -21,6 +22,7 @@ func Constructor(w []int) Solution {
 
 func (this *Solution) PickIndex() int {
 	rnd := rand.Intn(this.hi)
+	log.Print(rnd)
 	lo, hi := 0, len(this.cum)
 
 	for lo < hi {
