@@ -15,6 +15,8 @@ func TestIsSubsequence(t *testing.T) {
 	}{
 		{in: in{s: "abc", t: "ahbgdc"}, want: true},
 		{in: in{s: "axc", t: "ahbgdc"}, want: false},
+		{in: in{s: "abc", t: "bahbgdca"}, want: true},
+		{in: in{s: "abc", t: "bahgdcb"}, want: false},
 	}
 	for i, tt := range tests {
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
