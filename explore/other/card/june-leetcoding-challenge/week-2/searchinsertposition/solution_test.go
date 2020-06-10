@@ -18,6 +18,7 @@ func TestSearchInsert(t *testing.T) {
 		{in: in{nums: []int{1, 3, 5, 6}, target: 2}, want: 1},
 		{in: in{nums: []int{1, 3, 5, 6}, target: 7}, want: 4},
 		{in: in{nums: []int{1, 3, 5, 6}, target: 0}, want: 0},
+		{in: in{nums: []int{1, 3}, target: 2}, want: 1},
 	}
 	for i, tt := range tests {
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
