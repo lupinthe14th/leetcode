@@ -1,29 +1,21 @@
 package sortcolors
 
+// SeeAlso
+// https://leetcode.com/explore/featured/card/june-leetcoding-challenge/540/week-2-june-8th-june-14th/3357/discuss/26549/Java-solution-both-2-pass-and-1-pass
 func sortColors(nums []int) {
-	red, white, blue := 0, 0, 0
-	for _, n := range nums {
-		switch n {
+	p1, p2, i := 0, len(nums)-1, 0
+	for i <= p2 {
+		switch nums[i] {
 		case 0:
-			red++
-		case 1:
-			white++
+			nums[i] = nums[p1]
+			nums[p1] = 0
+			p1++
 		case 2:
-			blue++
+			nums[i] = nums[p2]
+			nums[p2] = 2
+			p2--
+			i--
 		}
-	}
-
-	for i := range nums {
-		switch {
-		case red > 0:
-			nums[i] = 0
-			red--
-		case white > 0:
-			nums[i] = 1
-			white--
-		case blue > 0:
-			nums[i] = 2
-			blue--
-		}
+		i++
 	}
 }
