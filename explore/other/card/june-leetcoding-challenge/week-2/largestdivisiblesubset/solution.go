@@ -16,11 +16,9 @@ func largestDivisibleSubset(nums []int) []int {
 		pre[i] = -1
 
 		for j := i - 1; j >= 0; j-- {
-			if nums[i]%nums[j] == 0 {
-				if 1+count[j] > count[i] {
-					count[i] = count[j] + 1
-					pre[i] = j
-				}
+			if nums[i]%nums[j] == 0 && 1+count[j] > count[i] {
+				count[i] = count[j] + 1
+				pre[i] = j
 			}
 		}
 		if count[i] > max {
@@ -30,9 +28,8 @@ func largestDivisibleSubset(nums []int) []int {
 	}
 	out := make([]int, 0)
 	for idx != -1 {
-		out = append(out, nums[idx])
+		out = append([]int{nums[idx]}, out...)
 		idx = pre[idx]
 	}
-	sort.Ints(out)
 	return out
 }
