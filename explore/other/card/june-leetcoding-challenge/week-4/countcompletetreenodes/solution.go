@@ -7,25 +7,8 @@ type TreeNode struct {
 }
 
 func countNodes(root *TreeNode) int {
-
-	c := 0
-
-	var count func(root *TreeNode)
-
-	count = func(root *TreeNode) {
-		if root == nil {
-			return
-		}
-		c++
-		if root.Left != nil {
-			count(root.Left)
-		}
-
-		if root.Right != nil {
-			count(root.Right)
-		}
-		return
+	if root == nil {
+		return 0
 	}
-	count(root)
-	return c
+	return 1 + countNodes(root.Left) + countNodes(root.Right)
 }
