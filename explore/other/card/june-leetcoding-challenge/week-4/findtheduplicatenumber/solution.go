@@ -1,15 +1,14 @@
 package findtheduplicatenumber
 
 func findDuplicate(nums []int) int {
-	l := len(nums)
-	out := 0
-	for i := 0; i < l; i++ {
-		for j := i + 1; j < l; j++ {
-			if nums[i] == nums[j] {
-				out = nums[i]
-				break
-			}
-		}
+	slow, fast := nums[0], nums[nums[0]]
+	for slow != fast {
+		slow, fast = nums[slow], nums[nums[fast]]
 	}
-	return out
+
+	slow, fast = nums[0], nums[fast]
+	for slow != fast {
+		slow, fast = nums[slow], nums[fast]
+	}
+	return slow
 }
