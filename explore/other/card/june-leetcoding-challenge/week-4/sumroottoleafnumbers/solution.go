@@ -1,9 +1,5 @@
 package sumroottoleafnumbers
 
-import (
-	"strconv"
-)
-
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
@@ -11,30 +7,23 @@ type TreeNode struct {
 }
 
 func sumNumbers(root *TreeNode) int {
-	a := []string{}
-	var number func(root *TreeNode, s string)
+	var sumNode func(root *TreeNode, p int) int
 
-	number = func(root *TreeNode, s string) {
+	sumNode = func(root *TreeNode, p int) int {
+		sum := 0
 		if root == nil {
-			return
+			return 0
 		}
-		v := strconv.Itoa(root.Val)
 		if root.Left != nil {
-			number(root.Left, s+v)
+			sum = sum + sumNode(root.Left, p*10+root.Val)
 		}
 		if root.Right != nil {
-			number(root.Right, s+v)
+			sum = sum + sumNode(root.Right, p*10+root.Val)
 		}
 		if root.Left == nil && root.Right == nil {
-			a = append(a, s+v)
+			sum = p*10 + root.Val
 		}
-		return
+		return sum
 	}
-	number(root, "")
-	out := 0
-	for i := range a {
-		n, _ := strconv.Atoi(a[i])
-		out += n
-	}
-	return out
+	return sumNode(root, 0)
 }
