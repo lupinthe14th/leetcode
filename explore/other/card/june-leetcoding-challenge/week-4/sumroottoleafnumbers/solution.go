@@ -7,28 +7,23 @@ type TreeNode struct {
 }
 
 func sumNumbers(root *TreeNode) int {
-	a := []int{}
-	var number func(root *TreeNode, p int)
+	var sumNode func(root *TreeNode, p int) int
 
-	number = func(root *TreeNode, p int) {
+	sumNode = func(root *TreeNode, p int) int {
+		sum := 0
 		if root == nil {
-			return
+			return 0
 		}
 		if root.Left != nil {
-			number(root.Left, p*10+root.Val)
+			sum = sum + sumNode(root.Left, p*10+root.Val)
 		}
 		if root.Right != nil {
-			number(root.Right, p*10+root.Val)
+			sum = sum + sumNode(root.Right, p*10+root.Val)
 		}
 		if root.Left == nil && root.Right == nil {
-			a = append(a, p*10+root.Val)
+			sum = p*10 + root.Val
 		}
-		return
+		return sum
 	}
-	number(root, 0)
-	out := 0
-	for i := range a {
-		out += a[i]
-	}
-	return out
+	return sumNode(root, 0)
 }
