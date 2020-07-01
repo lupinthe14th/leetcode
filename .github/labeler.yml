@@ -3,3 +3,6 @@ no-review-needed:
 
 june-leetcoding-challenge:
   - "explore/other/card/june-leetcoding-challenge/**/*"
+
+july-leetcoding-challenge:
+  - "explore/other/card/july-leetcoding-challenge/**/*"
