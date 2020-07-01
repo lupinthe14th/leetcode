@@ -1,2 +1,5 @@
 no-review-needed:
   - "**"
+
+june-leetcoding-challenge:
+  - "june-leetcoding-challenge/**/*"
