@@ -2,4 +2,4 @@ no-review-needed:
   - "**"
 
 june-leetcoding-challenge:
-  - "june-leetcoding-challenge/**/*"
+  - "explore/other/card/june-leetcoding-challenge/**/*"
