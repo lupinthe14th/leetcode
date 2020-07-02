@@ -17,8 +17,10 @@ func levelOrderBottom(root *TreeNode) [][]int {
 			return
 		}
 
-		if len(out) < level+1 {
-			out = append([][]int{{}}, out...)
+		if len(out) == level {
+			out = append([][]int{{node.Val}}, out...)
+		} else {
+			out[level] = append(out[level], node.Val)
 		}
 		if node.Left != nil {
 			helper(node.Left, level+1)
@@ -26,9 +28,16 @@ func levelOrderBottom(root *TreeNode) [][]int {
 		if node.Right != nil {
 			helper(node.Right, level+1)
 		}
-		out[len(out)-level-1] = append(out[len(out)-level-1], node.Val)
 	}
 
 	helper(root, 0)
-	return out
+	return reverse(out)
+}
+
+func reverse(a [][]int) [][]int {
+	for i := len(a)/2 - 1; i >= 0; i-- {
+		j := len(a) - 1 - i
+		a[i], a[j] = a[j], a[i]
+	}
+	return a
 }

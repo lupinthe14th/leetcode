@@ -30,6 +30,7 @@ func TestLevelOrderBottom(t *testing.T) {
 	for i, tt := range tests {
 		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
 			got := levelOrderBottom(tt.in)
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Fatalf("in: %v got: %v want: %v", tt.in, got, tt.want)
