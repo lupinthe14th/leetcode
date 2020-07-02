@@ -1,4 +1,4 @@
-package main
+package binarytreeinordertraversal
 
 // TreeNode is binary tree node definition
 type TreeNode struct {
@@ -8,22 +8,22 @@ type TreeNode struct {
 }
 
 func inorderTraversal(root *TreeNode) []int {
-	ans := make([]int, 0)
-	stack := make([]*TreeNode, 0)
-	visit := root
+	out := []int{}
 
-	for visit != nil || len(stack) != 0 {
-		for visit != nil {
-			stack = append(stack, visit)
-			visit = visit.Left
+	var helper func(node *TreeNode)
+	helper = func(node *TreeNode) {
+		if root == nil {
+			return
 		}
-		visit = stack[len(stack)-1]
-		stack = stack[:len(stack)-1]
-		ans = append(ans, visit.Val)
-		visit = visit.Right
-
+		if node.Left != nil {
+			helper(node.Left)
+		}
+		out = append(out, node.Val)
+		if node.Right != nil {
+			helper(node.Right)
+		}
 	}
-	return ans
-}
 
-func main() {}
+	helper(root)
+	return out
+}

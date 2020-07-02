@@ -1,4 +1,4 @@
-package main
+package binarytreeinordertraversal
 
 import (
 	"fmt"
@@ -17,7 +17,9 @@ var cases = []Case{
 
 func TestInorderTraversal(t *testing.T) {
 	for i, tt := range cases {
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
 			got := inorderTraversal(slice2Binaryheap(tt.input))
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("%v, want: %v", got, tt.want)
