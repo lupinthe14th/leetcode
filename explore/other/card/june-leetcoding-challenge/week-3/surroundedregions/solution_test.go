@@ -33,7 +33,9 @@ func TestSolve(t *testing.T) {
 		},
 	}
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
 			solve(tt.in)
 			if !reflect.DeepEqual(tt.in, tt.want) {
 				t.Fatalf("got: %v want: %v", tt.in, tt.want)
