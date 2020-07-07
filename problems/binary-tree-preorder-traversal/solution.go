@@ -1,4 +1,4 @@
-package main
+package binarytreepreordertraversal
 
 // TreeNode is definition for a binary tree node
 type TreeNode struct {
@@ -28,5 +28,3 @@ func preorderTraversal(root *TreeNode) []int {
 	}
 	return ans
 }
-
-func main() {}
