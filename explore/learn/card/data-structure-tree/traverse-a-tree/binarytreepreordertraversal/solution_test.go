@@ -19,7 +19,9 @@ var cases = []Case{
 
 func TestPreorderTravarsal(t *testing.T) {
 	for i, tt := range cases {
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
 			got := preorderTraversal(arr2TreeNode(tt.input))
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("%v, want: %v", got, tt.want)
