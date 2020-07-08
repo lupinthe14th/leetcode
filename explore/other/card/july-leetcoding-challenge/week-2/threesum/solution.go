@@ -1,29 +1,29 @@
 package threesum
 
-import (
-	"sort"
-)
+import "sort"
 
 func threeSum(nums []int) [][]int {
-	memo := make(map[int]int)
-	for i, n := range nums {
-		memo[n] = i
-	}
-	seen := make(map[[3]int]bool)
+	const target = 0
 	out := make([][]int, 0)
-	for i, x := range nums {
-		for j := i + 1; j < len(nums); j++ {
-			y := nums[j]
-			if k, ok := memo[-(y + x)]; ok && i != k && j != k && k > j {
-				t := []int{nums[i], nums[j], nums[k]}
-				sort.Ints(t)
-				var tmp [3]int
-				for i := range t {
-					tmp[i] = t[i]
-				}
-				if !seen[tmp] {
-					out = append(out, t)
-					seen[tmp] = true
+	sort.Ints(nums)
+
+	for i, v := range nums {
+		if i > 0 && v == nums[i-1] {
+			continue
+		}
+
+		lo, hi := i+1, len(nums)-1
+		for lo < hi {
+			sum := v + nums[lo] + nums[hi]
+			if sum > target {
+				hi--
+			} else if sum < target {
+				lo++
+			} else {
+				out = append(out, []int{v, nums[lo], nums[hi]})
+				lo++
+				for nums[lo] == nums[lo-1] && lo < hi {
+					lo++
 				}
 			}
 		}
