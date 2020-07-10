@@ -11,20 +11,20 @@ func widthOfBinaryTree(root *TreeNode) int {
 	start := []int{}
 	end := []int{}
 
-	var dfs func(node *TreeNode, d, o int) int
-	dfs = func(node *TreeNode, d, o int) int {
+	var dfs func(node *TreeNode, level, order int) int
+	dfs = func(node *TreeNode, level, order int) int {
 		if node == nil {
 			return 0
 		}
-		if len(start) == d {
-			start = append(start, o)
-			end = append(end, o)
+		if len(start) == level {
+			start = append(start, order)
+			end = append(end, order)
 		} else {
-			end[d] = o
+			end[level] = order
 		}
-		cur := end[d] - start[d] + 1
-		left := dfs(node.Left, d+1, 2*o)
-		right := dfs(node.Right, d+1, 2*o+1)
+		cur := end[level] - start[level] + 1
+		left := dfs(node.Left, level+1, 2*order)
+		right := dfs(node.Right, level+1, 2*order+1)
 		return max(cur, max(left, right))
 	}
 	return dfs(root, 0, 1)
