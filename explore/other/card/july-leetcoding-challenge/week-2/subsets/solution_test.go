@@ -13,26 +13,36 @@ func TestSubsets(t *testing.T) {
 		in   []int
 		want [][]int
 	}{
-		{in: []int{1, 2, 3}, want: [][]int{{}, {3}, {1}, {2}, {1, 2, 3}, {1, 3}, {2, 3}, {1, 2}}},
+		{in: []int{1, 2, 3}, want: [][]int{{3}, {1}, {2}, {1, 2, 3}, {1, 3}, {2, 3}, {1, 2}, {}}},
 		{in: []int{9, 0, 3, 5, 7}, want: [][]int{{}, {9}, {0}, {0, 9}, {3}, {3, 9}, {0, 3}, {0, 3, 9}, {5}, {5, 9}, {0, 5}, {0, 5, 9}, {3, 5}, {3, 5, 9}, {0, 3, 5}, {0, 3, 5, 9}, {7}, {7, 9}, {0, 7}, {0, 7, 9}, {3, 7}, {3, 7, 9}, {0, 3, 7}, {0, 3, 7, 9}, {5, 7}, {5, 7, 9}, {0, 5, 7}, {0, 5, 7, 9}, {3, 5, 7}, {3, 5, 7, 9}, {0, 3, 5, 7}, {0, 3, 5, 7, 9}}},
 	}
 
-	// This transfomer sorts a [][]int.
 	trans := cmp.Transformer("Sort", func(in [][]int) [][]int {
 		out := append([][]int(nil), in...)
 		sort.SliceStable(out, func(i, j int) bool {
 			for _, v := range out {
 				sort.Ints(v)
 			}
-			sort.SliceStable(out, func(i, j int) bool {
-				return len(out[i]) < len(out[j])
-			})
 			if len(out[i]) == 0 && len(out[j]) == 0 {
 				return true
-			} else if len(out[i]) == 0 || len(out[j]) == 0 {
+			}
+			if len(out[i]) == 0 && len(out[j]) != 0 {
+				return true
+			}
+			if len(out[i]) != 0 && len(out[j]) == 0 {
 				return false
 			}
-			return out[i][0] < out[j][0]
+			if len(out[i]) != len(out[j]) {
+				return len(out[i]) < len(out[j])
+			}
+			r := false
+			for k := 0; k < len(out[i]); k++ {
+				if out[i][k] != out[j][k] {
+					r = out[i][k] < out[j][k]
+					break
+				}
+			}
+			return r
 		})
 		return out
 	})
