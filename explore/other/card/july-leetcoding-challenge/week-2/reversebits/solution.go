@@ -1,25 +1,11 @@
 package reversebits
 
-// Approach 2: Byte by Byte with Memoization
+// Approach 3: Mask and Shift
 func reverseBits(num uint32) uint32 {
-	var out uint64
-	var pow uint64 = 24
-	cache := make(map[uint32]uint64)
-
-	reverseByte := func(b uint32) uint64 {
-		if v, ok := cache[b]; ok {
-			return v
-		}
-
-		v := (uint64(b) * 0x0202020202 & 0x010884422010) % 1023
-		cache[b] = v
-		return v
-
-	}
-	for num != 0 {
-		out += reverseByte(num&0xff) << pow
-		num = num >> 8
-		pow -= 8
-	}
-	return uint32(out)
+	num = (num >> 16) | (num << 16)
+	num = ((num & 0xff00ff00) >> 8) | ((num & 0x00ff00ff) << 8)
+	num = ((num & 0xf0f0f0f0) >> 4) | ((num & 0x0f0f0f0f) << 4)
+	num = ((num & 0xcccccccc) >> 2) | ((num & 0x33333333) << 2)
+	num = ((num & 0xaaaaaaaa) >> 1) | ((num & 0x55555555) << 1)
+	return num
 }
