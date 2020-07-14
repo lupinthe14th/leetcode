@@ -1,0 +1,13 @@
+package numberofgoodpairs
+
+func numIdenticalPairs(nums []int) int {
+	for i := range nums {
+		for j := range nums {
+			if i < j && nums[i] == nums[j] {
+				out++
+
+			}
+		}
+	}
+	return 0
+}
