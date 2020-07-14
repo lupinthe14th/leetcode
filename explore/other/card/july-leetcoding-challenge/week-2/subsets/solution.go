@@ -1,19 +1,18 @@
 package subsets
 
-// Approach 1: Cascading
+// Approach 2: Backtracking
 func subsets(nums []int) [][]int {
-	out := [][]int{}
-	out = append(out, []int{})
+	out := make([][]int, 0)
 
-	for _, num := range nums {
-		subsets := [][]int{}
-		for _, curr := range out {
-			curr = append([]int{num}, curr...)
-			subsets = append(subsets, curr)
-		}
-		for _, curr := range subsets {
-			out = append(out, curr)
+	var backtrack func(nums, cur []int)
+
+	backtrack = func(nums, cur []int) {
+		out = append(out, append([]int{}, cur...))
+		for i := 0; i < len(nums); i++ {
+			backtrack(nums[i+1:], append(cur, nums[i]))
 		}
 	}
+
+	backtrack(nums, nil)
 	return out
 }
