@@ -1,11 +1,6 @@
 package topkfrequentelements
 
-import (
-	"sort"
-)
-
 func topKFrequent(nums []int, k int) []int {
-	sort.Ints(nums)
 	r := 0
 	memo := make(map[int]int)
 	for i := range nums {
