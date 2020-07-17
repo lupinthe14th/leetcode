@@ -6,9 +6,6 @@ import (
 
 func topKFrequent(nums []int, k int) []int {
 	sort.Ints(nums)
-	l := len(nums)
-	lo := nums[0]
-	hi := nums[l-1]
 	r := 0
 	memo := make(map[int]int)
 	for i := range nums {
@@ -17,10 +14,8 @@ func topKFrequent(nums []int, k int) []int {
 	}
 
 	tmp := make([][]int, r+1)
-	for i := lo; i <= hi; i++ {
-		if n, ok := memo[i]; ok {
-			tmp[n] = append(tmp[n], i)
-		}
+	for n, v := range memo {
+		tmp[v] = append(tmp[v], n)
 	}
 	out := make([]int, 0, k)
 	for i := len(tmp) - 1; i >= 0; i-- {
