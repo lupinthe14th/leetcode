@@ -1,45 +1,34 @@
 package wordsearch
 
+// https://leetcode.com/problems/word-search/discuss/27658/Accepted-very-short-Java-solution.-No-additional-space.
 func exist(board [][]byte, word string) bool {
+	var dfs func(i, j, k int) bool
 
-	out := false
-	memo := make(map[byte][][2]int, 0)
-
-	for i := range board {
-		for j := range board[i] {
-			k := board[i][j]
-			memo[k] = append(memo[k], [2]int{i, j})
+	dfs = func(i, j, k int) bool {
+		if k == len(word) {
+			return true
 		}
-	}
-
-	var dfs func(i, j, k int)
-
-	dfs = func(i, j, k int) {
-		if i < 0 || j < 0 || i == len(board) || j == len(board[0]) || k == len(word) {
-			return
+		if i < 0 || j < 0 || i == len(board) || j == len(board[0]) {
+			return false
 		}
 
 		c := board[i][j]
 
-		if c != word[k] {
-			return
-		}
-
-		if k == len(word)-1 && c == word[k] {
-			out = true
-			return
+		if c == '#' || c != word[k] {
+			return false
 		}
 
 		board[i][j] = '#'
-		dfs(i+1, j, k+1)
-		dfs(i-1, j, k+1)
-		dfs(i, j+1, k+1)
-		dfs(i, j-1, k+1)
+		out := dfs(i+1, j, k+1) || dfs(i-1, j, k+1) || dfs(i, j+1, k+1) || dfs(i, j-1, k+1)
 		board[i][j] = c
+		return out
 	}
-
-	for _, idxes := range memo[word[0]] {
-		dfs(idxes[0], idxes[1], 0)
+	for i := 0; i < len(board); i++ {
+		for j := 0; j < len(board[0]); j++ {
+			if dfs(i, j, 0) {
+				return true
+			}
+		}
 	}
-	return out
+	return false
 }
