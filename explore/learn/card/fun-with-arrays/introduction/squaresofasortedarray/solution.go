@@ -1,11 +1,17 @@
 package squaresofasortedarray
 
-import "sort"
-
 func sortedSquares(A []int) []int {
-	for i := range A {
-		A[i] *= A[i]
+	out := make([]int, len(A))
+	for l, r, i := 0, len(A)-1, len(A)-1; l <= r; i-- {
+		ll := A[l] * A[l]
+		rr := A[r] * A[r]
+		if ll <= rr {
+			out[i] = rr
+			r--
+		} else {
+			out[i] = ll
+			l++
+		}
 	}
-	sort.Ints(A)
-	return A
+	return out
 }
