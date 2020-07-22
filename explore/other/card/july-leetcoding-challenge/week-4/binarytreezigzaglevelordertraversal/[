@@ -1,0 +1,45 @@
+package binarytreezigzaglevelordertraversal
+
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
+func zigzagLevelOrder(root *TreeNode) [][]int {
+	out := [][]int{}
+	if root == nil {
+		return out
+	}
+
+	var traversal func(node *TreeNode, l int)
+
+	traversal = func(node *TreeNode, l int) {
+		if node == nil {
+			return
+		}
+
+		if len(out) == l {
+			out = append(out, []int{node.Val})
+		} else if l%2 == 1 {
+			out[l] = append(out[l], node.Val)
+		}
+		if l%2 == 1 {
+			if node.Left != nil {
+				traversal(node.Left, l+1)
+			}
+			if node.Right != nil {
+				traversal(node.Right, l+1)
+			}
+		} else {
+			if node.Right != nil {
+				traversal(node.Right, l+1)
+			}
+			if node.Left != nil {
+				traversal(node.Left, l+1)
+			}
+		}
+	}
+	traversal(root, 0)
+	return out
+}
