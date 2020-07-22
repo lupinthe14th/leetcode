@@ -23,7 +23,7 @@ func TestExist(t *testing.T) {
 	for i, tt := range tests {
 		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
-			//			t.Parallel()
+			t.Parallel()
 			got := exist(tt.in.board, tt.in.word)
 			if got != tt.want {
 				t.Fatalf("in: %v got: %v want: %v", tt.in, got, tt.want)
