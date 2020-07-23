@@ -1,15 +1,24 @@
 package singlenumberiii
 
 func singleNumber(nums []int) []int {
-	memo := make(map[int]int)
+	// Pass 1:
+	// Get the XOR of the two numbers we need to find
+	diff := 0
 	for _, n := range nums {
-		memo[n]++
+		diff ^= n
 	}
+	// Get its last set bit
+	diff &= -diff
 
-	out := make([]int, 0, len(nums))
-	for k, v := range memo {
-		if v == 1 {
-			out = append(out, k)
+	// Pass 2:
+	out := make([]int, 2)
+	for _, n := range nums {
+		if n&diff == 0 {
+			// the bit is not set
+			out[0] ^= n
+		} else {
+			// the bit is set
+			out[1] ^= n
 		}
 	}
 	return out
