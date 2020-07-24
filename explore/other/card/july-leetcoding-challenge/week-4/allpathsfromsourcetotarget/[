@@ -1,0 +1,15 @@
+package allpathsfromsourcetotarget
+
+func allPathsSourceTarget(graph [][]int) [][]int {
+
+	out := make([][]int, 0)
+	v := make([]int, len(graph))
+	var dfs func(node []int)
+
+	dfs = func(node []int) {
+
+	}
+
+	dfs(graph[0])
+	return out
+}
