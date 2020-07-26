@@ -1,12 +1,11 @@
 package adddigits
 
 func addDigits(num int) int {
-	if num < 10 {
-		return num
+	if num == 0 {
+		return 0
 	}
-	n := num % 9
-	if n == 0 {
+	if num%9 == 0 {
 		return 9
 	}
-	return n
+	return num % 9
 }
