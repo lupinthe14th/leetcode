@@ -1,0 +1,19 @@
+package besttimetobuyandsellstockwithcooldown
+
+func maxProfit(prices []int) int {
+	stock := 0
+	out := 0
+	prev := 0
+	for i := range prices {
+		switch {
+		case stock == 0:
+			//buy
+			stock += prices[i]
+			prev = prices[i]
+		case prev < prices[i]:
+			//sell
+			out += stock * prices[i]
+		}
+	}
+	return out
+}
