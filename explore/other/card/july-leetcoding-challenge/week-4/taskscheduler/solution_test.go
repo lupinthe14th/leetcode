@@ -25,7 +25,7 @@ func TestLeastInterval(t *testing.T) {
 	for i, tt := range tests {
 		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
-			// t.Parallel()
+			t.Parallel()
 			got := leastInterval(tt.in.tasks, tt.in.n)
 			if got != tt.want {
 				t.Fatalf("in: %v got: %v want: %v", tt.in, got, tt.want)
