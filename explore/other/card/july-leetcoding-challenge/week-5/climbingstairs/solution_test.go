@@ -12,7 +12,7 @@ func TestClimbStairs(t *testing.T) {
 	}{
 		{in: 2, want: 2},
 		{in: 3, want: 3},
-		{in: 45, want: 3},
+		{in: 45, want: 1836311903},
 	}
 	for i, tt := range tests {
 		i, tt := i, tt
