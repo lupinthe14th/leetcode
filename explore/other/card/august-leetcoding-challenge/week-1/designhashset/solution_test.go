@@ -25,9 +25,9 @@ func TestSumRange(t *testing.T) {
 		{in: in{act: "cont", key: 2}, want: false},
 	}
 
+	c := Constructor()
 	for i, tt := range tests {
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
-			c := Constructor()
 			switch tt.in.act {
 			case "add":
 				c.Add(tt.in.key)
