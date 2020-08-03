@@ -1,15 +1,24 @@
 package validpalindrome
 
 func isPalindrome(s string) bool {
-	b := make([]byte, 0, len(s))
-	for i := range s {
-		if '0' <= s[i] && s[i] <= '9' || 'a' <= s[i] && s[i] <= 'z' || 'A' <= s[i] && s[i] <= 'Z' {
-			b = append(b, s[i]|' ')
+	isalnum := func(b byte) bool {
+		if '0' <= b && b <= '9' || 'a' <= b && b <= 'z' || 'A' <= b && b <= 'Z' {
+			return true
 		}
+		return false
 	}
-	for l, r := 0, len(b)-1; l < r; l, r = l+1, r-1 {
-		if b[l] != b[r] {
-			return false
+	l, r := 0, len(s)-1
+	for l < r {
+		if !isalnum(s[l]) {
+			l++
+		} else if !isalnum(s[r]) {
+			r--
+		} else {
+			if s[l]|' ' != s[r]|' ' {
+				return false
+			}
+			l++
+			r--
 		}
 	}
 	return true
