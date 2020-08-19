@@ -7,9 +7,6 @@ func numsSameConsecDiff(N int, K int) []int {
 
 	helper = func(n int, nums []int) {
 		if len(nums) == N {
-			if len(nums) != 1 && nums[0] == 0 {
-				return
-			}
 			num, e := 0, 1
 			for i := N - 1; i >= 0; i-- {
 				num += nums[i] * e
@@ -29,10 +26,13 @@ func numsSameConsecDiff(N int, K int) []int {
 			helper(n-K, append(nums, n-K))
 		}
 	}
-	for i := 0; i <= 9; i++ {
+	for i := 1; i <= 9; i++ {
 		num := make([]int, 0, N)
 		num = append(num, i)
 		helper(i, num)
+	}
+	if N == 1 {
+		out = append(out, 0)
 	}
 	return out
 }
