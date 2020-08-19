@@ -30,7 +30,9 @@ func numsSameConsecDiff(N int, K int) []int {
 		}
 	}
 	for i := 0; i <= 9; i++ {
-		helper(i, []int{i})
+		num := make([]int, 0, N)
+		num = append(num, i)
+		helper(i, num)
 	}
 	return out
 }
