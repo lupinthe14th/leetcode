@@ -2,13 +2,19 @@ package sortarraybyparity
 
 func sortArrayByParity(A []int) []int {
 
-	out := make([]int, 0, len(A))
+	out := make([]int, len(A))
 
+	i := 0
 	for _, n := range A {
 		if n%2 == 0 {
-			out = append([]int{n}, out...)
-		} else {
-			out = append(out, n)
+			out[i] = n
+			i++
+		}
+	}
+	for _, n := range A {
+		if n%2 != 0 {
+			out[i] = n
+			i++
 		}
 	}
 	return out
