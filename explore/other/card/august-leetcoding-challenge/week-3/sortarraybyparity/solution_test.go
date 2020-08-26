@@ -11,7 +11,7 @@ func TestSortArrayByParity(t *testing.T) {
 	tests := []struct {
 		in, want []int
 	}{
-		{in: []int{3, 1, 2, 4}, want: []int{4, 2, 3, 1}},
+		{in: []int{3, 1, 2, 4}, want: []int{2, 4, 3, 1}},
 	}
 
 	for i, tt := range tests {
