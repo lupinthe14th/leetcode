@@ -26,3 +26,7 @@ func rand10() int {
 		}
 	}
 }
+
+func rand7() int {
+	return 0
+}
