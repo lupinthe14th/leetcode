@@ -1,15 +1,15 @@
 package repeatedsubstringpattern
 
+import (
+	"strings"
+)
+
+// SeeAlso: https://leetcode.com/problems/repeated-substring-pattern/discuss/94334/Easy-python-solution-with-explaination
 func repeatedSubstringPattern(s string) bool {
 	l := len(s)
-	for i := l / 2; i > 0; i-- {
-		tmp := ""
-		for len(tmp) < l {
-			tmp += s[:i]
-		}
-		if tmp == s {
-			return true
-		}
+	if l == 0 {
+		return false
 	}
-	return false
+	ss := (s + s)[1 : l*2-1]
+	return strings.Contains(ss, s)
 }
