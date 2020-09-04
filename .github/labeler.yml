@@ -9,3 +9,6 @@ july-leetcoding-challenge:
 
 august-leetcoding-challenge:
   - "explore/other/card/august-leetcoding-challenge/**/*"
+
+september-leetcoding-challenge:
+  - "explore/other/card/september-leetcoding-challenge/**/*"
