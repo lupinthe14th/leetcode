@@ -7,8 +7,8 @@ type TreeNode struct {
 }
 
 func sumRootToLeaf(root *TreeNode) int {
-	bs := make([]int, 0)
 
+	out := 0
 	var traversal func(node *TreeNode, b int)
 	traversal = func(node *TreeNode, b int) {
 		if node == nil {
@@ -23,13 +23,9 @@ func sumRootToLeaf(root *TreeNode) int {
 			traversal(node.Right, b)
 		}
 		if node.Left == nil && node.Right == nil {
-			bs = append(bs, b)
+			out += b
 		}
 	}
 	traversal(root, 0)
-	out := 0
-	for i := range bs {
-		out += bs[i]
-	}
 	return out
 }
