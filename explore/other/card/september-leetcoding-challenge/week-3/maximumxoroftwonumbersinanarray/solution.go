@@ -15,7 +15,7 @@ func findMaximumXOR(nums []int) int {
 	for _, num := range nums {
 		node := root
 		for i := 31; i >= 0; i-- {
-			curBit := (num >> i) & 1
+			curBit := (num >> uint(i)) & 1
 			if node.children[curBit] == nil {
 				node.children[curBit] = &trieNode{}
 			}
@@ -35,9 +35,9 @@ func findMaximumXOR(nums []int) int {
 		node := root
 		curSum := 0
 		for i := 31; i >= 0; i-- {
-			curBit := (num >> i) & 1
+			curBit := (num >> uint(i)) & 1
 			if node.children[curBit^1] != nil {
-				curSum += 1 << i
+				curSum += 1 << uint(i)
 				node = node.children[curBit^1]
 			} else {
 				node = node.children[curBit]
