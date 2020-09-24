@@ -2,27 +2,20 @@ package gasstation
 
 func canCompleteCircuit(gas []int, cost []int) int {
 
-	out := -1
-	var dfs func(start, cur, tank int)
-	dfs = func(start, cur, tank int) {
-		tank -= cost[cur]
+	start, tank, total := 0, 0, 0
+	for station := 0; station < len(gas); station++ {
+		fuel := gas[station] - cost[station]
+		tank += fuel
+		total += fuel
+
 		if tank < 0 {
-			return
+			tank = 0
+			start = station + 1
 		}
-		cur++
-		if cur == len(gas) {
-			cur = 0
-		}
-		tank += gas[cur]
-		if start == cur {
-			out = start
-			return
-		}
-		dfs(start, cur, tank)
 	}
 
-	for i, g := range gas {
-		dfs(i, i, g)
+	if total < 0 {
+		return -1
 	}
-	return out
+	return start
 }
