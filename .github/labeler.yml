@@ -15,3 +15,6 @@ september-leetcoding-challenge:
 
 october-leetcoding-challenge:
   - "explore/other/card/october-leetcoding-challenge/**/*"
+
+november-leetcoding-challenge:
+  - "explore/other/card/november-leetcoding-challenge/**/*"
