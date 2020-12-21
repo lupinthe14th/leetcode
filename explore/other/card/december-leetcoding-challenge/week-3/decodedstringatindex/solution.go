@@ -1,20 +1,30 @@
 package decodedstringatindex
 
 func decodeAtIndex(S string, K int) string {
-	buf := make([]byte, 0, K-1)
-	for i := 0; i < len(S); i++ {
-		if '2' <= S[i] && S[i] <= '9' {
-			tmp := make([]byte, len(buf))
-			copy(tmp, buf)
-			for j := 0; j < int(S[i]-'0')-1; j++ {
-				buf = append(buf, tmp...)
-			}
+	size := 0
+	N := len(S)
+
+	for i := 0; i < N; i++ {
+		if '0' <= S[i] && S[i] <= '9' {
+			size *= int(S[i] - '0')
 		} else {
-			buf = append(buf, S[i])
-		}
-		if len(buf) >= K {
-			break
+			size++
 		}
 	}
-	return string(buf[K-1])
+
+	out := ""
+	for i := N - 1; i >= 0; i-- {
+		K %= size
+		if K == 0 && ('a' <= S[i] && S[i] <= 'z') {
+			out = string(S[i])
+			break
+		}
+
+		if '0' <= S[i] && S[i] <= '9' {
+			size /= int(S[i] - '0')
+		} else {
+			size--
+		}
+	}
+	return out
 }

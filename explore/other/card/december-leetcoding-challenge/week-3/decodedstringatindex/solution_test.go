@@ -18,7 +18,7 @@ func TestDecodeAtIndex(t *testing.T) {
 		{in: in{S: "leet2code3", K: 10}, want: "o"},
 		{in: in{S: "ha22", K: 5}, want: "h"},
 		{in: in{S: "a2345678999999999999999", K: 1}, want: "a"},
-		{in: in{S: "y959q969u3hb22odq595", K: 222280369}, want: "a"},
+		{in: in{S: "y959q969u3hb22odq595", K: 222280369}, want: "y"},
 	}
 	for i, tt := range tests {
 		i, tt := i, tt
