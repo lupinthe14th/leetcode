@@ -21,3 +21,6 @@ november-leetcoding-challenge:
 
 december-leetcoding-challenge:
   - "explore/other/card/december-leetcoding-challenge/**/*"
+
+january-leetcoding-challenge-2021:
+  - "explore/other/card/january-leetcoding-challenge-2021/**/*"
